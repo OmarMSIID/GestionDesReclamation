@@ -8,6 +8,18 @@
 </head>
 
 <body>
+    <?php if(session()->has('succ')):
+            echo '<p> '.session()->getFlashdata('succ').'</p>';
+        ?>
+    <?php endif;?>
+    <?php if(session()->has('inValid')):
+            echo '<p> '.session()->get('inValid').'</p>';
+        ?>
+    <?php endif;?>
+    <?php if(session()->has('failed')):
+            echo '<p> '.session()->get('failed').'</p>';
+        ?>
+    <?php endif;?>
     <table>
         <form action="/ajouteReclamation" method="post" enctype="multipart/form-data">
             <tr>
