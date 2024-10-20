@@ -7,6 +7,9 @@ use App\Models\ReclamationModel;
 use CodeIgniter\Email\Email;
 use Dompdf\Dompdf;
 
+use App\Controllers\ReclamationController\generatePdf;
+use PhpParser\Node\Stmt\Global_;
+
 class ReclamationController extends BaseController
 {
     public function fillClaim()
@@ -47,8 +50,10 @@ class ReclamationController extends BaseController
             $email->setTo($data['email']);
             $email->setFrom('omar.bhai2015@gmail.com');
             $email->setSubject("Reclamation .");
-            $email->setMessage("bonjour ".$data['nom_utilisateur']."<br> votre réclamation a envoyée avec succés .<br> <br> a la date : ".date('YmdHis').".");
-
+            $email->setMessage("bonjour ".$data['nom_utilisateur']."<br> votre réclamation a envoyée avec succés .<br> <br> a la date : ".date('Y-m-d H:i:s').".");
+            $fileName='reclamation de '.$data['nom_utilisateur'].'.pdf';
+            $filePath=$this->generatePdf($data,$fileName);
+            $email->attach($filePath);
             $bole = $email->send();
             if (!$bole) {
                 $session->set("email", 'on a un probleme dans email sender ');
@@ -79,8 +84,17 @@ class ReclamationController extends BaseController
         echo $data['id'] . '<br> ' . $data['status'];
     }
 
-    public function generatePdf(){
+    public function generatePdf($data,$fileName){
         $dompdf=new Dompdf();
-
+        $resp=[
+            "claim"=>$data,
+        ];
+        $html=view('loadPdf',$resp);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $output=$dompdf->output();
+        file_put_contents(WRITEPATH.'uploads/'.$fileName,$output);
+        return WRITEPATH.'uploads/'.$fileName;
     }
 }
