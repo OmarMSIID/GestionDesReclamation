@@ -4,6 +4,8 @@
 namespace App\Controllers;
 
 use App\Models\ReclamationModel;
+use CodeIgniter\Email\Email;
+use Dompdf\Dompdf;
 
 class ReclamationController extends BaseController
 {
@@ -24,7 +26,7 @@ class ReclamationController extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->with('inValid','invalid data ');
+            return redirect()->back()->with('inValid', 'invalid data ');
         }
 
         if ($file->isValid() && !$file->hasMoved()) {
@@ -41,6 +43,17 @@ class ReclamationController extends BaseController
             $session = session();
             $session->setFlashdata('succ', 'votre reclamation a ajoute .');
             $model->insert($data);
+            $email = \config\Services::email();
+            $email->setTo($data['email']);
+            $email->setFrom('omar.bhai2015@gmail.com');
+            $email->setSubject("Reclamation .");
+            $email->setMessage("bonjour ".$data['nom_utilisateur']."<br> votre réclamation a envoyée avec succés .<br> <br> a la date : ".date('YmdHis').".");
+
+            $bole = $email->send();
+            if (!$bole) {
+                $session->set("email", 'on a un probleme dans email sender ');
+            }
+
             return redirect()->to('/reclamation');
         } else {
             $session = session();
@@ -64,5 +77,10 @@ class ReclamationController extends BaseController
         $data['status'] = 'observer';
         $model->save($data);
         echo $data['id'] . '<br> ' . $data['status'];
+    }
+
+    public function generatePdf(){
+        $dompdf=new Dompdf();
+
     }
 }

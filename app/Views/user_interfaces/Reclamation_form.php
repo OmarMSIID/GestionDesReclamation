@@ -20,6 +20,10 @@
             echo '<p> '.session()->get('failed').'</p>';
         ?>
     <?php endif;?>
+    <?php if(session()->has('email')):
+            echo '<p> '.session()->get('email').'</p>';
+        ?>
+    <?php endif;?>
     <table>
         <form action="/ajouteReclamation" method="post" enctype="multipart/form-data">
             <tr>
