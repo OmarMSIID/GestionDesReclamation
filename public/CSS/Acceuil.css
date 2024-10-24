@@ -1,0 +1,242 @@
+* {
+    transition: background-color 300ms ease, color 300ms ease;
+}
+
+html,
+body {
+    color: rgba(33, 37, 41, 1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+header {
+    background-color: #dfe9f5;
+    padding: .4rem 0 0;
+}
+
+.menu {
+    padding: .4rem 2rem;
+}
+
+header ul {
+    border-bottom: 1px solid rgba(242, 242, 242, 1);
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-align: right;
+}
+
+header li {
+    display: inline-block;
+}
+
+header li a {
+    border-radius: 5px;
+    color: rgba(0, 0, 0, .5);
+    display: block;
+    height: 44px;
+    text-decoration: none;
+}
+
+header li.menu-item a {
+    border-radius: 5px;
+    margin: 5px 0;
+    height: 38px;
+    line-height: 36px;
+    padding: .4rem 17.5px;
+    text-align: center;
+}
+
+header li.menu-item a:hover{
+    color: #007bff;
+    /* Change to a blue color on hover */
+    transform: scale(1.05);
+    /* Slightly enlarge the text */
+}
+
+header li.menu-item a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #007bff;
+    /* Underline color on hover */
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease;
+}
+
+header .menu-toggle {
+    display: none;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+header .menu-toggle button {
+    border: none;
+    border-radius: 3px;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.3rem;
+    height: 36px;
+    padding: 0;
+    margin: 11px 0;
+    overflow: visible;
+    width: 40px;
+}
+
+header .menu-toggle button:hover,
+header .menu-toggle button:focus {
+    color: #007bff;
+    transform: scale(1.05);
+    /* Slightly enlarge the text */
+}
+
+header .heroe {
+    margin-top: 24px;
+    text-align: center;
+    padding: 1rem 1.75rem 5rem 1rem;
+}
+
+header .heroe h1 {
+    font-size: 2.45rem;
+    font-weight: 500;
+
+}
+
+header .heroe h2 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-top: 0px;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 187px;
+    background-color: #dfe9f5;
+    padding-bottom: 10px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0 3 20px 0;
+    margin-bottom: 7px;
+    width: 24%;
+    text-align: center;
+    background-color: #ffffff;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    /* Slow down transition duration */
+}
+
+.card:hover,
+.card:focus {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cards-container h3 {
+    color: #333;
+    top: 0;
+    font-weight: 600;
+}
+
+.cards-container p{
+    font-weight: 400;
+    font-size:13px;
+    top:0;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.card-buttons button {
+    border: none;
+    padding: 7px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-buttons #Soumettre1 {
+    margin-top: 25px;
+    margin-right: 10px;
+    width: 130px;
+    background-color: #007BFF;
+    color: white;
+}
+
+.card-buttons #Suivre {
+    margin-top: 25px;
+    width: 130px;
+    background-color: #6C757D;
+    color: white;
+}
+
+.card-buttons #Soumettre2 {
+    margin-top: 25px;
+    width: 130px;
+    background-color: #007BFF;
+    color: white
+}
+
+.card-buttons #Soumettre3 {
+    margin-top: 25px;
+    width: 130px;
+    background-color: #007BFF;
+    color: white
+}
+
+.card-buttons #Soumettre1:hover {
+    background-color: #0056b3;
+}
+
+.card-buttons #Suivre:hover {
+    background-color: #5a6268;
+}
+
+.card-buttons #Soumettre2:hover {
+    background-color: #0056b3;
+}
+
+.card-buttons #Soumettre3:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 629px) {
+    header ul {
+        padding: 0;
+    }
+
+    header .menu-toggle {
+        padding: 0 1rem;
+    }
+
+    header .menu-item {
+        background-color: rgba(244, 245, 246, 1);
+        border-top: 1px solid rgba(242, 242, 242, 1);
+        margin: 0 15px;
+        width: calc(100% - 30px);
+    }
+
+    header .menu-toggle {
+        display: block;
+    }
+
+    header .hidden {
+        display: none;
+    }
+}
