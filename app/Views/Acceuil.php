@@ -16,10 +16,10 @@
             <li class="menu-toggle">
                 <button id="menuToggle">&#9776;</button>
             </li>
-            <li class="menu-item hidden"><a href="http://localhost:8080">Acceuil</a></li>
-            <li class="menu-item hidden"><a href="https://localhost:8080/A_propos">A propos</a>
+            <li class="menu-item hidden"><a href="/">Acceuil</a></li>
+            <li class="menu-item hidden"><a href="/A_propos">A propos</a>
             </li>
-            <li class="menu-item hidden"><a href="https://forum.codeigniter.com/" target="_blank">Statistiques</a></li>
+            <li class="menu-item hidden"><a href="/statistiques" target="_blank">Statistiques</a></li>
         </ul>
     </div>
     <div class="heroe">
