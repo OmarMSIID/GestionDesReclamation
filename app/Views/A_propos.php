@@ -91,7 +91,7 @@
                 <p>Les citoyens méritent un service public de qualité. Cette plateforme a été développée pour offrir aux communes marocaines un moyen simple et efficace de collecter et de traiter les réclamations des citoyens. Les communes peuvent suivre l’évolution des problèmes signalés et garantir une réponse rapide et adaptée.</p>
             </div>
             <div class="col-md-6">
-                <img src="photos/Customer_Complaints.webp" alt="Gestion des réclamations" class="img-fluid rounded">
+                <img src="photos/Customer_Complaints.jpg" alt="Gestion des réclamations" class="img-fluid rounded">
             </div>
         </div>
 
