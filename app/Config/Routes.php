@@ -11,7 +11,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', [Acceuil::class,'index']);
-$routes->get('/statistiques',[Statistiques::class,'index']);
+$routes->get('/Statistiques',[Statistiques::class,'index']);
 $routes->get('/A_propos',[A_propos::class,'index']);
 
 $routes->get('/reclamation',[ReclamationController::class,'fillClaim']);
