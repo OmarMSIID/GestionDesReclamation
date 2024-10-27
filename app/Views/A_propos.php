@@ -68,10 +68,10 @@
             <li class="menu-toggle">
                 <button id="menuToggle">&#9776;</button>
             </li>
-            <li class="menu-item hidden"><a href="http://localhost:8080">Acceuil</a></li>
-            <li class="menu-item hidden"><a href="A_propos">A propos</a>
+            <li class="menu-item hidden"><a href="/">Acceuil</a></li>
+            <li class="menu-item hidden"><a href="/A_propos">A propos</a>
             </li>
-            <li class="menu-item hidden"><a href="Statistiques">Statistiques</a></li>
+            <li class="menu-item hidden"><a href="/Statistiques">Statistiques</a></li>
         </ul>
     </div>
 </header>
