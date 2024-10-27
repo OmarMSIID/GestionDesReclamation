@@ -11,7 +11,7 @@ class ReclamationController extends BaseController
 {
     public function fillClaim()
     {
-        return view('user_interfaces/Reclamation_form');
+        return view('user_interfaces/Soumettre_Forms/Soumettre_Reclamation');
     }
 
     public function addClaim()
