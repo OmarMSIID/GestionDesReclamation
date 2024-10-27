@@ -14,7 +14,9 @@ $routes->get('/', [Acceuil::class,'index']);
 $routes->get('/Statistiques',[Statistiques::class,'index']);
 $routes->get('/A_propos',[A_propos::class,'index']);
 
-$routes->get('/reclamation',[ReclamationController::class,'fillClaim']);
+$routes->get('/Soumettre_Reclamation',[ReclamationController::class,'fillClaim']);
+$routes->get('/Soumettre_Observation',[Soumettre_Observation::class,'index']);
+$routes->get('/Soumettre_Suggestion',[Soumettre_Suggestion::class,'index']);
 $routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
 
 //-----------------admin routes-----------------------//
