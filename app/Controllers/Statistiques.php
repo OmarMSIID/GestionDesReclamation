@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 class Statistiques extends BaseController{
-    public function index(): string
+    public function index()
     {
-        return view("Statistiques.php");
+        return view('Statistiques');
     }
 }
