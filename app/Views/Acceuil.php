@@ -40,7 +40,7 @@
                 Déposez ici votre réclamation pour tout problème avec un service public.
             </p>
             <div class="card-buttons">
-                <button type="submit" id="Soumettre1"><i class="fa-regular fa-paper-plane" style="color: white;"></i>   Soumettre</button>
+                <a href="/Soumettre_Reclamation"><button type="submit" id="Soumettre1"><i class="fa-regular fa-paper-plane" style="color: white;"></i>   Soumettre</button></a>
                 <button type="submit" id="Suivre"><i class="fa-regular fa-hand-point-up"></i>   Suivre</button>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 Si vous avez des remarques ou suggestions sur nos services, soumettez vos observations ici.
             </p>
             <div class="card-buttons">
-                <button type="submit" id="Soumettre2"><i class="fa-regular fa-paper-plane" style="color: white;" ></i>     Soumettre</button>
+                <a href="/Soumettre_Observation"><button type="submit" id="Soumettre2"><i class="fa-regular fa-paper-plane" style="color: white;" ></i>     Soumettre</button></a>
             </div>
         </div>
         <div class="card">
@@ -59,7 +59,7 @@
                 Vous avez des idées pour améliorer nos services ? Soumettez vos suggestions ici.
             </p>
             <div class="card-buttons">
-                <button type="submit" id="Soumettre3"><i class="fa-regular fa-paper-plane" style="color: white;"></i>     Soumettre</button>
+                <a href="/Soumettre_Suggestion"><button type="submit" id="Soumettre3"><i class="fa-regular fa-paper-plane" style="color: white;"></i>     Soumettre</button></a>
             </div>
         </div>
     </section>
