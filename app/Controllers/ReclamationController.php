@@ -4,11 +4,8 @@
 namespace App\Controllers;
 
 use App\Models\ReclamationModel;
-use CodeIgniter\Email\Email;
 use Dompdf\Dompdf;
 
-use App\Controllers\ReclamationController\generatePdf;
-use PhpParser\Node\Stmt\Global_;
 
 class ReclamationController extends BaseController
 {
@@ -83,6 +80,8 @@ class ReclamationController extends BaseController
         $model->save($data);
         echo $data['id'] . '<br> ' . $data['status'];
     }
+
+    //------------generate pdf ----------------//
 
     public function generatePdf($data,$fileName){
         $dompdf=new Dompdf();

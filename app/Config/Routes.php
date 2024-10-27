@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\Acceuil;
 use App\Controllers\ReclamationController;
 use App\Models\ReclamationModel;
 use CodeIgniter\Router\RouteCollection;
@@ -7,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', [Acceuil::class,'index']);
 
 $routes->get('/reclamation',[ReclamationController::class,'fillClaim']);
 $routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
