@@ -69,9 +69,9 @@
                 <button id="menuToggle">&#9776;</button>
             </li>
             <li class="menu-item hidden"><a href="http://localhost:8080">Acceuil</a></li>
-            <li class="menu-item hidden"><a href="https://codeigniter.com/user_guide/" target="_blank">A propos</a>
+            <li class="menu-item hidden"><a href="http://localhost:8080/A_propos.php">A propos</a>
             </li>
-            <li class="menu-item hidden"><a href="https://forum.codeigniter.com/" target="_blank">Statistiques</a></li>
+            <li class="menu-item hidden"><a href="http://localhost:8080/Statistiques">Statistiques</a></li>
         </ul>
     </div>
 </header>
@@ -91,7 +91,7 @@
                 <p>Les citoyens méritent un service public de qualité. Cette plateforme a été développée pour offrir aux communes marocaines un moyen simple et efficace de collecter et de traiter les réclamations des citoyens. Les communes peuvent suivre l’évolution des problèmes signalés et garantir une réponse rapide et adaptée.</p>
             </div>
             <div class="col-md-6">
-                <img src="Images/Customer_Complaints.webp" alt="Gestion des réclamations" class="img-fluid rounded">
+                <img src="photos/Customer_Complaints.webp" alt="Gestion des réclamations" class="img-fluid rounded">
             </div>
         </div>
 
@@ -105,7 +105,7 @@
                 </ul>
             </div>
             <div class="col-md-6 order-md-1">
-                <img src="Images/Fonctionnalites.jpeg" alt="Fonctionnalités" class="img-fluid rounded">
+                <img src="photos/Fonctionnalites.jpeg" alt="Fonctionnalités" class="img-fluid rounded">
             </div>
         </div>
 
