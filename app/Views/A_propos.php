@@ -71,7 +71,7 @@
             <li class="menu-item hidden"><a href="http://localhost:8080">Acceuil</a></li>
             <li class="menu-item hidden"><a href="http://localhost:8080/A_propos.php">A propos</a>
             </li>
-            <li class="menu-item hidden"><a href="http://localhost:8080/Statistiques">Statistiques</a></li>
+            <li class="menu-item hidden"><a href="http://localhost:8080/Statistiques.php">Statistiques</a></li>
         </ul>
     </div>
 </header>
