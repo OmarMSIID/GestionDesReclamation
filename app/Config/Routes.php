@@ -3,6 +3,8 @@
 use App\Controllers\A_propos;
 use App\Controllers\Acceuil;
 use App\Controllers\ReclamationController;
+use App\Controllers\Soumettre_Observation;
+use App\Controllers\Soumettre_Suggestion;
 use App\Controllers\Statistiques;
 use App\Models\ReclamationModel;
 use CodeIgniter\Router\RouteCollection;
@@ -10,10 +12,13 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
+ //-----------------pages routes-----------------------//
 $routes->get('/', [Acceuil::class,'index']);
 $routes->get('/Statistiques',[Statistiques::class,'index']);
 $routes->get('/A_propos',[A_propos::class,'index']);
 
+//-----------------formulaires routes-----------------------//
 $routes->get('/Soumettre_Reclamation',[ReclamationController::class,'fillClaim']);
 $routes->get('/Soumettre_Observation',[Soumettre_Observation::class,'index']);
 $routes->get('/Soumettre_Suggestion',[Soumettre_Suggestion::class,'index']);
