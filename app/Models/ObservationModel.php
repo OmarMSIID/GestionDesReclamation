@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 
 class ObservationModel extends Model{
     protected $table='observation';
-    protected $allowedFields =['title','nom_utilisateur','description','date'];
+    protected $allowedFields =['sujet','nom_utilisateur','description','date'];
 }
 
 ?>
