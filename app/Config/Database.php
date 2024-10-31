@@ -18,18 +18,20 @@ class Database extends Config
      * Lets you choose which connection group to use if no other is specified.
      */
     public string $defaultGroup = 'default';
+    
 
     /**
      * The default database connection.
      *
      * @var array<string, mixed>
      */
+    
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
-        'username'     => '',
+        'username'     => 'root',
         'password'     => '',
-        'database'     => '',
+        'database'     => 'gestion des reclamations',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
@@ -41,7 +43,7 @@ class Database extends Config
         'compress'     => false,
         'strictOn'     => false,
         'failover'     => [],
-        'port'         => 3306,
+        'port'         => 3307,
         'numberNative' => false,
         'dateFormat'   => [
             'date'     => 'Y-m-d',
