@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\AdminModel;
 use App\Entities\Admin;
 
-class Gestion_admins extends BaseController
+class Gestion_adminsController extends BaseController
 {
     public function index(): string
     {

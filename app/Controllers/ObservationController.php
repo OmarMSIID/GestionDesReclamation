@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Soumettre_Observation extends BaseController
+class ObservationController extends BaseController
 {
     public function index(): string
     {

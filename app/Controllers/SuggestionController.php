@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Soumettre_Suggestion extends BaseController
+class SuggestionController extends BaseController
 {
     public function index(): string
     {

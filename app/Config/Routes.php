@@ -1,13 +1,13 @@
 <?php
 
-use App\Controllers\A_propos;
-use App\Controllers\Acceuil;
+use App\Controllers\A_proposController;
+use App\Controllers\AcceuilController;
 use App\Controllers\ReclamationController;
-use App\Controllers\Soumettre_Observation;
-use App\Controllers\Soumettre_Suggestion;
-use App\Controllers\Statistiques;
+use App\Controllers\ObservationController;
+use App\Controllers\SuggestionController;
+use App\Controllers\StatistiquesController;
 use App\Models\ReclamationModel;
-use App\Controllers\Gestion_admins;
+use App\Controllers\Gestion_adminsController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -15,17 +15,17 @@ use CodeIgniter\Router\RouteCollection;
  */
 
  //-----------------pages routes-----------------------//
-$routes->get('/', [Acceuil::class,'index']);
-$routes->get('/Statistiques',[Statistiques::class,'index']);
-$routes->get('/A_propos',[A_propos::class,'index']);
+$routes->get('/', [AcceuilController::class,'index']);
+$routes->get('/Statistiques',[StatistiquesController::class,'index']);
+$routes->get('/A_propos',[A_proposController::class,'index']);
 
 //-----------------formulaires routes-----------------------//
 $routes->get('/Soumettre_Reclamation',[ReclamationController::class,'fillClaim']);
-$routes->get('/Soumettre_Observation',[Soumettre_Observation::class,'index']);
-$routes->get('/Soumettre_Suggestion',[Soumettre_Suggestion::class,'index']);
-$routes->get('/Gestion_admins',[Gestion_admins::class,'index']);
+$routes->get('/Soumettre_Observation',[ObservationController::class,'index']);
+$routes->get('/Soumettre_Suggestion',[SuggestionController::class,'index']);
+$routes->get('/Gestion_admins',[Gestion_adminsController::class,'index']);
 $routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
-$routes->post('/ajouteAdmin', [Gestion_admins::class,'ajouterAdmin']);
+$routes->post('/ajouteAdmin', [Gestion_adminsController::class,'ajouterAdmin']);
 
 //-----------------admin routes-----------------------//
 $routes->get('/admin/list',[ReclamationController::class,'claimList']);

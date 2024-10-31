@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Statistiques extends BaseController{
+class StatistiquesController extends BaseController{
     public function index()
     {
         return view('Statistiques');

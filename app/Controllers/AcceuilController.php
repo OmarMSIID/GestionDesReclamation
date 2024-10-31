@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Acceuil extends BaseController
+class AcceuilController extends BaseController
 {
     public function index(): string
     {
