@@ -7,14 +7,34 @@ class Observation extends Entity
 {
     protected $attributes = [
         'id' => null,
-        'email' => null,
         'nom_utilisateur' => null,
-        'mot_de_passe' => null,
+        'email' => null,
+        'description' => null,
     ];
-
-    public function setMotDePasse(string $password)
+    // getters et setters pour nom d'utilisateur
+    public function setNomUtilisateur(string $nom_utilisateur)
     {
-        // Hash le mot de passe lors de la définition
-        $this->attributes['mot_de_passe'] = password_hash($password, PASSWORD_DEFAULT);
+        $this->attributes['nom_utilisateur'] = $nom_utilisateur;
+    }
+    public function getNomUtilisateur(){
+        return $this->attributes['nom_utilisateur'];
+    }
+
+    // getters et setters pour l'email
+    public function setEmail(string $email)
+    {
+        $this->attributes['email'] = $email;
+    }
+    public function getEmail(){
+        return $this->attributes['email'];
+    }
+    
+    // getters et setters pour description
+    public function setDescription(string $description)
+    {
+        $this->attributes['description'] = $description;
+    }
+    public function getDescription(){
+        return $this->attributes['description'];
     }
 }
