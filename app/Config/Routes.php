@@ -23,7 +23,7 @@ $routes->get('/A_propos',[A_propos::class,'index']);
 $routes->get('/Soumettre_Reclamation',[ReclamationController::class,'fillClaim']);
 $routes->get('/Soumettre_Observation',[Soumettre_Observation::class,'index']);
 $routes->get('/Soumettre_Suggestion',[Soumettre_Suggestion::class,'index']);
-//$routes->get('/Gestion_admins',[Gestion_admins::class,'index']);
+$routes->get('/Gestion_admins',[Gestion_admins::class,'index']);
 $routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
 $routes->post('/ajouteAdmin', [Gestion_admins::class,'ajouterAdmin']);
 
