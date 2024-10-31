@@ -26,6 +26,10 @@ class Gestion_admins extends BaseController
             return redirect()->back()->with('error', 'Password is required.');
         }
         // Sauvegarder dans la base de données
-        $adminModel->save($admin);
+        if ($adminModel->save($admin)) {
+            return view('admin_interfaces/Gestion_admins.php', ['showSuccessModal' => true]);
+        } else {
+            return redirect()->back()->with('error', 'Failed to add admin: ' . implode(', ', $adminModel->errors()));
+        }
     }
 }
