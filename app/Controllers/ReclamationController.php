@@ -4,8 +4,10 @@
 namespace App\Controllers;
 
 use App\Models\ReclamationModel;
+use App\Entities\Reclamation;
+use Config\App;
 use Dompdf\Dompdf;
-
+use Masterminds\HTML5\Entities;
 
 class ReclamationController extends BaseController
 {
@@ -21,7 +23,7 @@ class ReclamationController extends BaseController
         $rules = [
             'email' => 'required|valid_email',
             'sujet' => 'required|min_length[5]',
-            'username' => 'required|min_length[3]|max_length[255]',
+            'nom_utilisateur' => 'required|min_length[3]|max_length[255]',
             'description' => 'required|min_length[10]'
         ];
 
@@ -32,53 +34,57 @@ class ReclamationController extends BaseController
         if ($file->isValid() && !$file->hasMoved()) {
             $imageName = $file->getRandomName();
             $file->move('photos/', $imageName);
-            $data = [
-                'nom_utilisateur' => $this->request->getPost('username'),
-                'sujet' => $this->request->getPost('sujet'),
-                'email' => $this->request->getPost('email'),
-                'description' => $this->request->getPost('description'),
-                'status' => 'no traiter',
-                'photo' => $imageName
-            ];
+            $reclamation= new \App\Entities\Reclamation();
+            $reclamation->setNomUtilisateur($this->request->getPost('nom_utilisateur'));
+            $reclamation->setSujet($this->request->getPost('sujet'));
+            $reclamation->setEmail($this->request->getPost('email'));
+            $reclamation->setDescription($this->request->getPost('description'));
+            $reclamation->setStatus();
+            $reclamation->setPhoto($imageName);
             $session = session();
             $session->setFlashdata('succ', 'votre reclamation a ajoute .');
-            $model->insert($data);
+            $model->save($reclamation);
             $email = \config\Services::email();
-            $email->setTo($data['email']);
+            $email->setTo($reclamation->getEmail());
             $email->setFrom('omar.bhai2015@gmail.com');
             $email->setSubject("Reclamation .");
-            $email->setMessage("bonjour ".$data['nom_utilisateur']."<br> votre réclamation a envoyée avec succés .<br> <br> a la date : ".date('Y-m-d H:i:s').".");
-            $fileName='reclamation de '.$data['nom_utilisateur'].'.pdf';
-            $filePath=$this->generatePdf($data,$fileName);
+            $email->setMessage("bonjour ".$reclamation->getNomUtilisateur()."<br> votre réclamation a envoyée avec succés .<br> <br> a la date : ".date('Y-m-d H:i:s').".");
+            $fileName='reclamation de '.$reclamation->getN.'.pdf';
+            $filePath=$this->generatePdf($reclamation,$fileName);
             $email->attach($filePath);
             $bole = $email->send();
             if (!$bole) {
                 $session->set("email", 'on a un probleme dans email sender ');
             }
 
-            return redirect()->to('/reclamation');
+            return redirect()->to('/');
         } else {
             $session = session();
             $session->setFlashdata('failed', 'the image is not valid ');
 
-            return redirect()->to('/reclamation');
+            return redirect()->to('/');
         }
     }
 
     public function claimList()
     {
         $model = new ReclamationModel();
-        $data['claims'] = $model->findAll();
-        return view('admin_interfaces/listDeReclamation', $data);
+        
+        return view('admin_interfaces/listDeReclamation',['claims'=>$model->findAll()]);
     }
 
     public function viewClaim($id)
     {
         $model = new ReclamationModel();
-        $data = $model->find($id);
-        $data['status'] = 'observer';
-        $model->save($data);
-        echo $data['id'] . '<br> ' . $data['status'];
+        $reclamation= new \App\Entities\Reclamation();
+        $reclamation=$model->find($id);
+        if(strcmp($reclamation->getStatus(),'observer')==0){
+            return view('admin_interfaces/reclamationInfo',['claim'=>$model->find($id)]);
+
+        }
+        $reclamation->setStatus('observer');
+        $model->save($reclamation);
+        return view('admin_interfaces/reclamationInfo',['claim'=>$model->find($id)]);
     }
 
     //------------generate pdf ----------------//

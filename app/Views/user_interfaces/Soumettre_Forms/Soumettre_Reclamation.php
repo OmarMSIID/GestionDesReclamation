@@ -41,7 +41,7 @@
 
 <div class="form-container">
         <div class="form-title">Soumettre une Réclamation</div>
-        <form id="reclamationForm" onsubmit="return validateForm()">
+        <form id="reclamationForm"  action="/ajouteReclamation" method="post" enctype="multipart/form-data">
             <!-- Nom d'utilisateur -->
             <div class="mb-3">
                 <input type="text" class="form-control" id="nom_utilisateur" name="nom_utilisateur" placeholder="Nom d'utilisateur" required>
@@ -64,7 +64,7 @@
             
             <!-- Sélection d'une photo -->
             <div class="mb-3">
-                <input type="file" class="form-control" id="photo" name="photo" accept="image/*" placeholder="Sélectionnez une photo (facultatif)">
+                <input type="file" class="form-control" id="photo" name="photo"  placeholder="Sélectionnez une photo (facultatif)">
             </div>
             
             <!-- Boutons d'action -->

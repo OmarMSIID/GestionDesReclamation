@@ -15,6 +15,7 @@
                 <td>email</td>
                 <td>sujet</td>
                 <td>description</td>
+                <td>status</td>
                 <td>image</td>
                 <td>action</td>
             </tr>
@@ -22,13 +23,13 @@
         <tbody>
             <?php foreach ($claims as $claim): ?>
                 <tr>
-                    <td><?= $claim['nom_utilisateur'] ?></td>
-                    <td><?= $claim['email'] ?></td>
-                    <td><?= $claim['sujet'] ?></td>
-                    <td><?= $claim['description'] ?></td>
-                    <td><?= $claim['status']?></td>
-                    <td> <img src="<?= base_url('photos/' . $claim['photo']) ?>" height="100px" width="100px" alt="Reclamation Photo"></td>
-                    <td><a href="/admin/view/<?= $claim['id']?>">view</a></td>
+                    <td><?= $claim->getNomUtilisateur() ?></td>
+                    <td><?= $claim->getEmail() ?></td>
+                    <td><?= $claim->getSujet() ?></td>
+                    <td><?= $claim->getDescription() ?></td>
+                    <td><?= $claim->getStatus()?></td>
+                    <td> <img src="<?= base_url('photos/' . $claim-> getPhoto()) ?>" height="100px" width="100px" alt="Reclamation Photo"></td>
+                    <td><a href="/admin/view/<?= $claim->id?>">view</a></td>
                 </tr>
             <?php endforeach ?>
         </tbody>
