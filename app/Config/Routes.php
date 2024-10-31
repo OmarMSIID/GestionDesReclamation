@@ -25,6 +25,7 @@ $routes->get('/Soumettre_Observation',[Soumettre_Observation::class,'index']);
 $routes->get('/Soumettre_Suggestion',[Soumettre_Suggestion::class,'index']);
 //$routes->get('/Gestion_admins',[Gestion_admins::class,'index']);
 $routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
+$routes->post('/ajouteAdmin', [Gestion_admins::class,'ajouterAdmin']);
 
 //-----------------admin routes-----------------------//
 $routes->get('/admin/list',[ReclamationController::class,'claimList']);
