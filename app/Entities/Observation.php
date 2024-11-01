@@ -2,6 +2,7 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
+use DateTime;
 
 class Observation extends Entity
 {
@@ -9,6 +10,8 @@ class Observation extends Entity
         'id' => null,
         'nom_utilisateur' => null,
         'email' => null,
+        'date' => null,
+        'sujet' => null,
         'description' => null,
     ];
     // getters et setters pour nom d'utilisateur
@@ -28,7 +31,7 @@ class Observation extends Entity
     public function getEmail(){
         return $this->attributes['email'];
     }
-    
+
     // getters et setters pour description
     public function setDescription(string $description)
     {
@@ -36,5 +39,23 @@ class Observation extends Entity
     }
     public function getDescription(){
         return $this->attributes['description'];
+    }
+
+    // getters et setters pour date
+    public function setDate(DateTime $date)
+    {
+        $this->attributes['date'] = $date->format('Y-m-d H:i:s');
+    }
+    public function getDate(){
+        return $this->attributes['date'];
+    }
+
+    // getters et setters pour sujet
+    public function setSujet(string $sujet)
+    {
+        $this->attributes['sujet'] = $sujet;
+    }
+    public function getSujet(){
+        return $this->attributes['sujet'];
     }
 }
