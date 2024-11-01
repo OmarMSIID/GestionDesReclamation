@@ -33,8 +33,8 @@ $routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
 //-----------------admin routes-----------------------//
 $routes->get('/admin/list',[ReclamationController::class,'claimList']);
 $routes->get('/admin/view/(:segment)',[ReclamationController::class,'viewClaim']);
-$routes->post('/admin/delete/(:segment)',[ReclamationModel::class,'deleteClaim']);
-$routes->post('/admin/accepter/(:segment)',[ReclamationModel::class,'accepteClaim']);
+$routes->get('/admin/delete/(:segment)',[ReclamationController::class,'deleteClaim']);
+$routes->get('/admin/accepter/(:segment)',[ReclamationController::class,'accepteClaim']);
 
 
 

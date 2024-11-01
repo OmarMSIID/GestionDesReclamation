@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Enums\ClaimStatus;
 use CodeIgniter\Entity\Entity;
 
 class Reclamation extends Entity{
@@ -46,7 +47,7 @@ class Reclamation extends Entity{
         return $this;
     }
 
-    public function setStatus(string $status = 'no traiter')
+    public function setStatus(string $status="EN ATTENTE" )
     {
         $this->attributes['status'] = $status;
         return $this;

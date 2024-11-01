@@ -36,8 +36,8 @@
             <td><img src="<?= base_url('photos/' . $claim-> getPhoto()) ?>" height="100px" width="100px" alt="Reclamation Photo"></td>
         </tr>
         <tr>
-            <td><a href="#">accepte</a></td>
-            <td><a href="#">supprimer</a></td>
+            <td><a href="/admin/accepter/<?=$claim->id ?>">accepte</a></td>
+            <td><a href="/admin/delete/<?=$claim->id?>">supprimer</a></td>
         </tr>
     </table>
 </body>
