@@ -22,10 +22,11 @@ $routes->get('/A_propos',[A_proposController::class,'index']);
 //-----------------formulaires routes-----------------------//
 $routes->get('/Soumettre_Reclamation',[ReclamationController::class,'fillClaim']);
 $routes->get('/Soumettre_Observation',[ObservationController::class,'index']);
+$routes->post('/ajouteObservation',[ObservationController::class,'ajouterObservation']);
 $routes->get('/Soumettre_Suggestion',[SuggestionController::class,'index']);
 $routes->get('/Gestion_admins',[Gestion_adminsController::class,'index']);
-$routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
 $routes->post('/ajouteAdmin', [Gestion_adminsController::class,'ajouterAdmin']);
+$routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
 
 //-----------------admin routes-----------------------//
 $routes->get('/admin/list',[ReclamationController::class,'claimList']);
