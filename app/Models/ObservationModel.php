@@ -5,7 +5,8 @@ use CodeIgniter\Model;
 
 class ObservationModel extends Model{
     protected $table='observation';
-    protected $allowedFields =['sujet','nom_utilisateur','description','date'];
+    protected $returnType = 'App\Entities\Observation';
+    protected $allowedFields =['nom_utilisateur','email','date','sujet','description'];
 }
 
 ?>
