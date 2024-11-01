@@ -5,7 +5,8 @@ use CodeIgniter\Model;
 
 class SuggestionModel extends Model{
     protected $table='suggestion';
-    protected $allowedFields =['sujet','nom_utilisateur','description','date'];
+    protected $returnType = 'App\Entities\Suggestion';
+    protected $allowedFields =['nom_utilisateur','email','date','sujet','description'];
 }
 
 ?>
