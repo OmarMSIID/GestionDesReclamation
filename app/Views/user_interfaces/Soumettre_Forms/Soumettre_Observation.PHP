@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soumettre_Observation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="<?= base_url('JS/Soumettre_Forms/Soumettre_Reclamation.js'); ?>"></script>
     <style>
         body {
@@ -41,7 +40,7 @@
 
 <div class="form-container">
         <div class="form-title">Soumettre une Observation</div>
-        <form id="reclamationForm" onsubmit="return validateForm()">
+        <form action="<?= base_url('ajouteObservation') ?>" method="post">
             <!-- Nom d'utilisateur -->
             <div class="mb-3">
                 <input type="text" class="form-control" id="nom_utilisateur" name="nom_utilisateur" placeholder="Nom d'utilisateur" required>
@@ -52,6 +51,11 @@
                 <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
             </div>
             
+            <!-- Sujet -->
+            <div class="mb-3">
+                <input type="text" class="form-control" id="sujet" name="sujet" placeholder="Sujet" required>
+            </div>
+
             <!-- Description -->
             <div class="mb-3">
                 <textarea class="form-control" id="description" name="description" rows="2" placeholder="Description" required></textarea>
@@ -64,5 +68,34 @@
             </div>
         </form>
     </div>
+    <!-- si l'ajout d'une observation faites sans problemes -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="background-color: #d0f0c0;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Merci pour votre Observation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Votre observation a été soumise avec succès. Nous apprécions votre contribution !
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        <?php if (isset($showSuccessModal) && $showSuccessModal): ?>
+            $(document).ready(function() {
+                $('#successModal').modal('show');
+            });
+        <?php endif; ?>
+    </script>
 </body>
 </html>
