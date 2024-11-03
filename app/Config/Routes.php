@@ -7,7 +7,6 @@ use App\Controllers\ObservationController;
 use App\Controllers\SuggestionController;
 use App\Controllers\StatistiquesController;
 use App\Controllers\ConnexionController;
-use App\Models\ReclamationModel;
 use App\Controllers\Gestion_adminsController;
 use CodeIgniter\Router\RouteCollection;
 
