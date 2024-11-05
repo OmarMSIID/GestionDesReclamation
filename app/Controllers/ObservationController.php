@@ -17,18 +17,28 @@ class ObservationController extends BaseController
     {
         $observationModel = new ObservationModel();
         $observation = new Observation();
+        $rules = [
+            'email' => 'required|valid_email',
+            'sujet' => 'required|min_length[5]',
+            'nom_utilisateur' => 'required|min_length[3]|max_length[255]',
+            'description' => 'required|min_length[10]'
+        ];
+        if ($this->validate($rules)) {
+            $observation->nom_utilisateur = $this->request->getPost('nom_utilisateur');
+            $observation->email = $this->request->getPost('email');
+            $observation->setDate(new DateTime());
+            $observation->sujet = $this->request->getPost('sujet');
+            $observation->description = $this->request->getPost('description');
 
-        $observation->nom_utilisateur = $this->request->getPost('nom_utilisateur');
-        $observation->email = $this->request->getPost('email');
-        $observation->setDate(new DateTime());
-        $observation->sujet = $this->request->getPost('sujet');
-        $observation->description = $this->request->getPost('description');
-        
-        // Sauvegarder dans la base de données
-        if ($observationModel->save($observation)) {
-            return view('user_interfaces/Soumettre_Forms/Soumettre_Observation', ['showSuccessModal' => true]);
-        } else {
-            return redirect()->back()->with('error', "Échec de l'ajout d'une observation" . implode(', ', $observationModel->errors()));
+            // Sauvegarder dans la base de données
+            if ($observationModel->save($observation)) {
+                return view('user_interfaces/Soumettre_Forms/Soumettre_Observation', ['showSuccessModal' => true]);
+            } else {
+                return redirect()->back()->with('error', "Échec de l'ajout d'une observation" . implode(', ', $observationModel->errors()));
+            }
+        }
+        else{
+            return redirect()->back()->with('error', "Échec de l'ajout d'une observation");;
         }
     }
 }
