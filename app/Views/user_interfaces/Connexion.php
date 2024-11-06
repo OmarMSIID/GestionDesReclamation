@@ -29,12 +29,18 @@
 </head>
 
 <body>
+    <?php if (session()->getFlashdata('error')) : ?>
+        <div class="alert alert-danger position-fixed w-35" style="margin-left:38%;">
+            <?= session()->getFlashdata('error') ?>
+        </div>
+    <?php endif; ?>
+    
     <div class="d-flex justify-content-center align-items-center container h-100 vh-100">
         <div id="div2" class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
             <div class="card shadow-lg">
                 <div class="card-body p-5">
                     <h1 id="h1_form" class="text-center fs-3 card-title fw-bold">Se connecter</h1>
-                    <form method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                    <form method="post" action="Admin/Connexion" class="needs-validation" novalidate="" autocomplete="on">
                         <div class="mb-3">
                             <label class="mb-2 text-muted" for="email">E-Mail</label>
                             <input id="email" type="email" class="form-control" name="email" value="" required>
