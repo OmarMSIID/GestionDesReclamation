@@ -26,6 +26,7 @@ $routes->post('/ajouteObservation',[ObservationController::class,'ajouterObserva
 $routes->get('/Soumettre_Suggestion',[SuggestionController::class,'index']);
 $routes->post('/ajouteSuggestion',[SuggestionController::class,'ajouterSuggestion']);
 $routes->get('/Connexion-Connexion-admin',[ConnexionController::class,'index']);
+$routes->post('Admin/Connexion',[ConnexionController::class,'Connexion']);
 
 $routes->get('/Gestion_admins',[Gestion_adminsController::class,'index']);
 $routes->post('/ajouteAdmin', [Gestion_adminsController::class,'ajouterAdmin']);
