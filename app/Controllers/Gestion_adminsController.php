@@ -18,7 +18,7 @@ class Gestion_adminsController extends BaseController
         $rules = [
             'email' => 'required|valid_email',
             'nom_utilisateur' => 'required',
-            'mot_de_passe' => 'required|min_length[8]' //ayyoub hada ka nforce 3la ma yd5le ta values mn front end l back end ila ma validao hade les condition ??.
+            'mot_de_passe' => 'required|min_length[8]'
         ];
         if ($this->validate($rules)) {
             $admin->email = $this->request->getPost('email');
