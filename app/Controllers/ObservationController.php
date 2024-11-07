@@ -31,4 +31,22 @@ class ObservationController extends BaseController
             return redirect()->back()->with('error', "Échec de l'ajout d'une observation" . implode(', ', $observationModel->errors()));
         }
     }
+
+    public function afficher_observations()
+    {
+        $observationModel = new ObservationModel();
+        $data['observations'] = $observationModel->findAll();
+        
+        return view('admin_interfaces/Gestion_Observation', $data);
+    }
+
+    public function supprimer_observation($id)
+    {
+        $observationModel = new ObservationModel();
+        if ($observationModel->delete($id)) {
+            return redirect()->to('/Liste_Observations')->with('success', 'Observation supprimée.');
+        } else {
+            return redirect()->to('/Liste_Observations')->with('error', 'Échec de la suppression.');
+        }
+    }
 }
