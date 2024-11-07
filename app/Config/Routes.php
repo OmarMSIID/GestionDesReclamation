@@ -22,6 +22,11 @@ $routes->get('/A_propos',[A_proposController::class,'index']);
 //-----------------formulaires routes-----------------------//
 $routes->get('/Soumettre_Reclamation',[ReclamationController::class,'fillClaim']);
 $routes->get('/Soumettre_Observation',[ObservationController::class,'index']);
+//
+$routes->get('/Liste_Observations',[ObservationController::class,'afficher_observations']);
+$routes->get('admin/supprimer_observation/(:num)', [ObservationController::class,'supprimer_observation/$1']);
+
+//
 $routes->post('/ajouteObservation',[ObservationController::class,'ajouterObservation']);
 $routes->get('/Soumettre_Suggestion',[SuggestionController::class,'index']);
 $routes->post('/ajouteSuggestion',[SuggestionController::class,'ajouterSuggestion']);
