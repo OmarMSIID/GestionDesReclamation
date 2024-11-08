@@ -25,6 +25,9 @@ $routes->get('/Soumettre_Observation',[ObservationController::class,'index']);
 //
 $routes->get('/Liste_Observations',[ObservationController::class,'afficher_observations']);
 $routes->get('admin/supprimer_observation/(:num)', [ObservationController::class,'supprimer_observation/$1']);
+//
+$routes->get('/Liste_Suggestions',[SuggestionController::class,'afficher_suggestions']);
+$routes->get('admin/supprimer_suggestion/(:num)', [SuggestionController::class,'supprimer_suggestion/$1']);
 
 //
 $routes->post('/ajouteObservation',[ObservationController::class,'ajouterObservation']);
