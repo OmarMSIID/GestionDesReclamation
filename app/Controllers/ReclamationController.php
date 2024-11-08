@@ -74,15 +74,9 @@ class ReclamationController extends BaseController
     public function viewClaim($id)
     {
         $model = new ReclamationModel();
-        $reclamation = new \App\Entities\Reclamation();
-        $reclamation = $model->find($id);
-        if (strcmp($reclamation->getStatus(), "OBSERVER") == 0) {
-            return view('admin_interfaces/reclamationInfo', ['claim' => $model->find($id)]);
-        }
-        $reclamation->setStatus("OBSERVER");
-        $model->save($reclamation);
         return view('admin_interfaces/reclamationInfo', ['claim' => $model->find($id)]);
     }
+    
 
     public function deleteClaim($id)
     {
@@ -108,7 +102,7 @@ class ReclamationController extends BaseController
 
         if ($boolean) {
             $email->send();
-            return redirect()->to("/admin/list");
+            return redirect()->to("/admin/dashboard");
         } else {
             return "error!!";
         }
@@ -137,10 +131,14 @@ class ReclamationController extends BaseController
         $email->setMessage($message);
 
         if ($email->send()) {
-            return redirect()->to("/admin/list");
+            return redirect()->to("/admin/dashboard");
         } else {
             return "Erreur lors de l'envoi de l'email!";
         }
+    }
+
+    public function getDashboard(){
+        return view('/admin_interfaces/dashboard');
     }
 
     //------------generate pdf ----------------//

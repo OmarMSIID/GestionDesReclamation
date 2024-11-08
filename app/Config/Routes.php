@@ -45,6 +45,7 @@ $routes->get('/admin/list',[ReclamationController::class,'claimList']);
 $routes->get('/admin/view/(:segment)',[ReclamationController::class,'viewClaim']);
 $routes->get('/admin/delete/(:segment)',[ReclamationController::class,'deleteClaim']);
 $routes->get('/admin/accepter/(:segment)',[ReclamationController::class,'accepteClaim']);
+$routes->get('/admin/dashboard',[ReclamationController::class,'getDashboard']);
 
 
 
