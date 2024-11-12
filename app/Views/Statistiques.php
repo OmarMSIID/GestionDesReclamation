@@ -71,7 +71,7 @@
                             <i class="fas fa-envelope"></i> 
                             Nombre total de réclamations reçues
                         </h5>
-                        <p class="stats-number" id="totalReclamations">0</p>
+                        <p class="stats-number" id="totalReclamations"><?=$recus?></p>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                             <i class="fas fa-spinner"></i> 
                             Réclamations en cours de traitement
                         </h5>
-                        <p class="stats-number" id="reclamationsEnCours">0</p>
+                        <p class="stats-number" id="reclamationsEnCours"><?= $enCourDeTraitement ?></p>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                             <i class="fas fa-check-circle"></i> 
                             Réclamations traitées
                         </h5>
-                        <p class="stats-number" id="reclamationsTraitees">0</p>
+                        <p class="stats-number" id="reclamationsTraitees"><?= $accepte ?></p>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                             <i class="fas fa-times-circle"></i> 
                             Réclamations rejetées
                         </h5>
-                        <p class="stats-number" id="reclamationsRejetees">0</p>
+                        <p class="stats-number" id="reclamationsRejetees"><?= $refuse?></p>
                     </div>
                 </div>
             </div>
@@ -116,10 +116,10 @@
 
     <script>
         // Simulation des données
-        document.getElementById("totalReclamations").textContent = 120;
-        document.getElementById("reclamationsEnCours").textContent = 35;
-        document.getElementById("reclamationsTraitees").textContent = 70;
-        document.getElementById("reclamationsRejetees").textContent = 10;
+       // document.getElementById("totalReclamations").textContent = 120;
+        //document.getElementById("reclamationsEnCours").textContent = 35;
+        //document.getElementById("reclamationsTraitees").textContent = 70;
+        //document.getElementById("reclamationsRejetees").textContent = 10;
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

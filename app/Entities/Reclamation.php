@@ -47,7 +47,7 @@ class Reclamation extends Entity{
         return $this;
     }
 
-    public function setStatus(string $status="EN ATTENTE" )
+    public function setStatus(string $status="EN_COUR_DE_TRAITEMENT" )
     {
         $this->attributes['status'] = $status;
         return $this;
