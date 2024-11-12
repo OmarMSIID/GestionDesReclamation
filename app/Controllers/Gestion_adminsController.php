@@ -9,7 +9,7 @@ class Gestion_adminsController extends BaseController
 {
     public function index(): string
     {
-        return view('admin_interfaces/Gestion_admins.php');
+        return view('admin_interfaces/Ajouter_admins.php');
     }
     public function ajouterAdmin()
     {
@@ -27,7 +27,7 @@ class Gestion_adminsController extends BaseController
         }
         // Sauvegarder dans la base de données
         if ($adminModel->save($admin)) {
-            return view('admin_interfaces/Gestion_admins.php', ['showSuccessModal' => true]);
+            return view('admin_interfaces/Ajouter_admins.php', ['showSuccessModal' => true]);
         } else {
             return redirect()->back()->with('error', 'Failed to add admin: ' . implode(', ', $adminModel->errors()));
         }

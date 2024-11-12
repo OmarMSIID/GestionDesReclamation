@@ -20,7 +20,7 @@
                     <input type="text" class="form-control" id="nom_utilisateur" name="nom_utilisateur" required>
                 </div>
                 <div class="form-group">
-                    <label for="mot_de_passe">Mot de passe</label>
+                    <label for="mot_de_passe">Mot de passe</label> 
                     <input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe" required>
                 </div>
                 <div class="form-group">
