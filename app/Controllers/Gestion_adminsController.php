@@ -32,4 +32,43 @@ class Gestion_adminsController extends BaseController
             return redirect()->back()->with('error', 'Failed to add admin: ' . implode(', ', $adminModel->errors()));
         }
     }
+
+    public function afficher_admins()
+    {
+        $adminModel = new AdminModel();
+        $data['admins'] = $adminModel->findAll();
+        
+        return view('admin_interfaces/Gestion_admins', $data);
+    }
+
+    public function supprimer_admin($id)
+    {
+        $adminModel = new AdminModel();
+        if ($adminModel->delete($id)) {
+            return redirect()->to('/Liste_Admins')->with('success', 'Admin supprimée.');
+        } else {
+            return redirect()->to('/Liste_Admins')->with('error', 'Échec de la suppression.');
+        }
+    }
+
+    public function modifier_admin($id)
+    {
+        $adminModel = new AdminModel();
+        $admin = $adminModel->find($id);
+
+        if (!$admin) {
+            return redirect()->to('/Liste_Admins')->with('error', 'Admin introuvable.');
+        }
+            $admin->email = $this->request->getPost('email');
+            $admin->nom_utilisateur = $this->request->getPost('nom_utilisateur');
+
+            if ($adminModel->save($admin)) {
+                return redirect()->to('/Liste_Admins')->with('success', 'Admin modifié avec succès.');
+            } else {
+                return redirect()->back()->with('error', 'Erreur lors de la modification de l\'admin.');
+            }
+        
+
+        return view('admin_interfaces/Modifier_admin', ['admin' => $admin]);
+    }
 }
