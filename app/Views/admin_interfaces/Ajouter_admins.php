@@ -7,6 +7,11 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-color:#dfe9f6;">
+        <?php if (session()->getFlashdata('error')) : ?>
+        <div class="alert alert-danger position-absolute" style="top: 4%;left: 50%;transform: translate(-50%, -50%);">
+            <?= session()->getFlashdata('error') ?>
+        </div>
+    <?php endif; ?>
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
             <h3 class="text-center mb-4">Ajouter Admin</h3>
