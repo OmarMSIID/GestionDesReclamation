@@ -55,7 +55,7 @@ class SuggestionController extends BaseController
     {
         $suggestionModel = new SuggestionModel();
         if ($suggestionModel->delete($id)) {
-            return redirect()->to('/Liste_Suggestions')->with('success', 'Suggestions supprimée.');
+            return redirect()->to('/Liste_Suggestions')->with('success', 'Suggestion supprimée.');
         } else {
             return redirect()->to('/Liste_Suggestions')->with('error', 'Échec de la suppression.');
         }

@@ -54,7 +54,7 @@ class Gestion_adminsController extends BaseController
     {
         $adminModel = new AdminModel();
         if ($adminModel->delete($id)) {
-            return redirect()->to('/Liste_Admins')->with('success', 'Admin supprimée.');
+            return redirect()->back()->with("success", "Admin supprimée.");
         } else {
             return redirect()->to('/Liste_Admins')->with('error', 'Échec de la suppression.');
         }
