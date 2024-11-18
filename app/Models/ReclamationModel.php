@@ -7,7 +7,7 @@ class ReclamationModel extends Model{
     protected $table='reclamation';
     protected $primaryKey='id';
     protected $returnType = 'App\Entities\Reclamation';
-    protected $allowedFields =['sujet','nom_utilisateur','description','email','status','date','photo'];
+    protected $allowedFields =['sujet','nom_utilisateur','description','email','status','date','photo','generated_id'];
 
     
 

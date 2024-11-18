@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controllers;
 
 use App\Models\ReclamationModel;
@@ -11,7 +10,7 @@ class ReclamationController extends BaseController
 {
     public function fillClaim()
     {
-        $session=session();
+        $session = session();
         $session->destroy();
         return view('user_interfaces/Soumettre_Forms/Soumettre_Reclamation');
     }
@@ -24,16 +23,20 @@ class ReclamationController extends BaseController
             'email' => 'required|valid_email',
             'sujet' => 'required|min_length[5]',
             'nom_utilisateur' => 'required|min_length[3]|max_length[255]',
-            'description' => 'required|min_length[10]'
+            'description' => 'required|min_length[10]',
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->with('inValid', 'invalid data ');
+            return redirect()->back()->with('inValid', 'invalid data');
         }
 
         if ($file->isValid() && !$file->hasMoved()) {
+            // Génération d'un ID unique
+            $generated_id = $this->genererIdUnique($model);
+
             $imageName = $file->getRandomName();
             $file->move('photos/', $imageName);
+
             $reclamation = new \App\Entities\Reclamation();
             $reclamation->setNomUtilisateur($this->request->getPost('nom_utilisateur'));
             $reclamation->setSujet($this->request->getPost('sujet'));
@@ -42,12 +45,16 @@ class ReclamationController extends BaseController
             $reclamation->setStatus();
             $reclamation->setDate();
             $reclamation->setPhoto($imageName);
+            $reclamation->setGenerated_id($generated_id);
+
             $session = session();
             $model->save($reclamation);
-            return redirect()->to('/');
+
+            // Affichage de la vue de confirmation
+            return view('reclamations/confirmation', ['generated_id' => $generated_id]);
         } else {
             $session = session();
-            $session->setFlashdata('failed', 'the image is not valid ');
+            $session->setFlashdata('failed', 'The image is not valid');
 
             return redirect()->to('/');
         }
@@ -55,37 +62,38 @@ class ReclamationController extends BaseController
 
     public function claimList()
     {
-        $session= session();
+        $session = session();
         $model = new ReclamationModel();
-        if($session->get("logged")){
+
+        if ($session->get("logged")) {
             return view('admin_interfaces/listDeReclamation', ['claims' => $model->findAll()]);
-        }
-        else{
+        } else {
             return redirect()->to("/Connexion-Connexion-admin");
         }
     }
 
     public function viewClaim($id)
     {
-        $session=session();
+        $session = session();
         $model = new ReclamationModel();
-        if($session->get("logged")){
+
+        if ($session->get("logged")) {
             return view('admin_interfaces/reclamationInfo', ['claim' => $model->find($id)]);
-        }
-        else{
+        } else {
             return redirect()->to("/Connexion-Connexion-admin");
         }
     }
-    
 
     public function deleteClaim($id)
     {
-        $refuseModel=new RefusedClaimModel();
+        $refuseModel = new RefusedClaimModel();
         $model = new ReclamationModel();
         $reclamation = $model->find($id);
         $reclamation->setStatus("REFUSE");
         $model->save($reclamation);
-        $refuseModel->save(['reason'=>$reclamation->getSujet()]);
+
+        $refuseModel->save(['reason' => $reclamation->getSujet()]);
+
         $email = \Config\Services::email();
         $email->setTo($reclamation->getEmail());
         $email->setFrom('omar.bhai2015@gmail.com');
@@ -100,6 +108,7 @@ class ReclamationController extends BaseController
         $message .= "L'équipe de support";
 
         $email->setMessage($message);
+
         $boolean = $model->delete($id);
 
         if ($boolean) {
@@ -113,10 +122,10 @@ class ReclamationController extends BaseController
     public function accepteClaim($id)
     {
         $model = new ReclamationModel();
-        $reclamation = new \App\Entities\Reclamation();
         $reclamation = $model->find($id);
         $reclamation->setStatus("ACCEPTE");
         $model->save($reclamation);
+
         $email = \Config\Services::email();
         $email->setTo($reclamation->getEmail());
         $email->setFrom('omar.bhai2015@gmail.com');
@@ -139,13 +148,13 @@ class ReclamationController extends BaseController
         }
     }
 
-    public function getDashboard(){
-        $session= session();
-        
-        if($session->get("logged")){
+    public function getDashboard()
+    {
+        $session = session();
+
+        if ($session->get("logged")) {
             return view('/admin_interfaces/dashboard');
-        }
-        else{
+        } else {
             return redirect()->to("/Connexion-Connexion-admin");
         }
     }
@@ -165,5 +174,33 @@ class ReclamationController extends BaseController
         $output = $dompdf->output();
         file_put_contents(WRITEPATH . 'uploads/' . $fileName, $output);
         return WRITEPATH . 'uploads/' . $fileName;
+    }
+
+    // Générer un ID unique
+    private function genererIdUnique($model)
+    {
+        do {
+            $generated_id = strtoupper(bin2hex(random_bytes(4)));
+        } while ($model->where('generated_id', $generated_id)->first());
+        return $generated_id;
+    }
+
+    // Télécharger le PDF pour suivre une réclamation
+    public function telechargerPdf($generated_id)
+    {
+        $model = new ReclamationModel();
+        $reclamation = $model->where('generated_id', $generated_id)->first();
+
+        if (!$reclamation) {
+            return redirect()->to('/')->with('error', 'Réclamation introuvable.');
+        }
+
+        // Générer le contenu du PDF pour suivre la réclamation
+        $dompdf = new Dompdf();
+        $html = view('reclamations/pdf', ['reclamation' => $reclamation]);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream('reclamation_' . $generated_id . '.pdf', ['Attachment' => 1]);
     }
 }

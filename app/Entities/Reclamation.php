@@ -15,6 +15,7 @@ class Reclamation extends Entity{
         'status'         => null,
         'date'           =>null,
         'photo'          => null,
+        'generated_id'   => null,
     ];
 
     
@@ -53,6 +54,13 @@ class Reclamation extends Entity{
         $this->attributes['status'] = $status;
         return $this;
     }
+
+    public function setGenerated_id(string $generated_id )
+    {
+        $this->attributes['generated_id'] = $generated_id;
+        return $this;
+    }
+
 
     public function getNomUtilisateur(): ?string
     {
