@@ -37,6 +37,11 @@
     </style>
 </head>
 <body>
+    <?php if (session()->getFlashdata('error')) : ?>
+        <div class="alert alert-danger position-absolute" style="top: 4%;left: 50%;transform: translate(-50%, -50%);">
+            <?= session()->getFlashdata('error') ?>
+        </div>
+    <?php endif; ?>
 
 <div class="form-container">
         <div class="form-title">Soumettre une Suggestion</div>

@@ -68,6 +68,19 @@
     </style>
 </head>
 <body style="background-color: #dfe9f5;">
+<?php if (session()->getFlashdata('success')) : ?>
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="alert alert-success mb-0">
+                        <?= session()->getFlashdata('success') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
     <div class="container-fluid">
         <div class="row">
             <nav class="  d-md-block sidebar">
@@ -90,7 +103,7 @@
                             </a>
                         </li>
                         <li class="nav-item text-center">
-                            <a class="nav-link text-center ml-2" href="<?= base_url('Liste_Utilisateurs') ?>">
+                            <a class="nav-link text-center ml-2" href="<?= base_url('Liste_Admins') ?>">
                                 <i class="fas fa-users fa-fw"></i> Utilisateurs
                             </a>
                         </li>
@@ -112,5 +125,14 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#successModal').modal('show');
+            setTimeout(() => {
+                $('#successModal').modal('hide');
+            }, 1500);
+        });
+    </script>
 </body>
 </html>

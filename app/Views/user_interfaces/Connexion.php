@@ -30,7 +30,7 @@
 
 <body>
     <?php if (session()->getFlashdata('error')) : ?>
-        <div class="alert alert-danger position-fixed w-35" style="margin-left:38%;">
+        <div class="alert alert-danger position-absolute" style="top: 4%;left: 50%;transform: translate(-50%, -50%);">
             <?= session()->getFlashdata('error') ?>
         </div>
     <?php endif; ?>

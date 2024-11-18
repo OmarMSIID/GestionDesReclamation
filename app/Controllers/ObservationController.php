@@ -24,11 +24,23 @@ class ObservationController extends BaseController
         $observation->sujet = $this->request->getPost('sujet');
         $observation->description = $this->request->getPost('description');
 
+        $validation = \Config\Services::Validation();
+        $validation->setRules([
+            'nom_utilisateur' => 'required',
+            'email' =>'required|valid_email',
+            'sujet' => 'required|min_length[3]',
+            'description' => 'required|min_length[15]',
+        ]);
+
         // Sauvegarder dans la base de données
-        if ($observationModel->save($observation)) {
-            return view('user_interfaces/Soumettre_Forms/Soumettre_Observation', ['showSuccessModal' => true]);
-        } else {
-            return redirect()->back()->with('error', "Échec de l'ajout d'une observation" . implode(', ', $observationModel->errors()));
+        if($this->validate($validation->getRules())){
+            if ($observationModel->save($observation)) {
+                return view('user_interfaces/Soumettre_Forms/Soumettre_Observation', ['showSuccessModal' => true]);
+            } else {
+                return redirect()->back()->with('error', "Échec de l'ajout d'une observation" . implode(', ', $observationModel->errors()));
+            }
+        }else{
+            return redirect()->back()->withInput()->with("error","Les informations que vous avez fournies ne sont pas valides");
         }
     }
 

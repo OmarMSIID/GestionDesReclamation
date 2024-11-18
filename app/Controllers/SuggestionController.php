@@ -24,14 +24,25 @@ class SuggestionController extends BaseController
         $suggestion->sujet = $this->request->getPost('sujet');
         $suggestion->description = $this->request->getPost('description');
 
+        $validation = \Config\Services::Validation();
+        $validation->setRules([
+            'nom_utilisateur' => 'required',
+            'email' =>'required|valid_email',
+            'sujet' => 'required|min_length[3]',
+            'description' => 'required|min_length[15]',
+        ]);
+
         // Sauvegarder dans la base de données
-        if ($suggestionModel->save($suggestion)) {
-            return view('user_interfaces/Soumettre_Forms/Soumettre_Suggestion', ['showSuccessModal' => true]);
-        } else {
-            return redirect()->back()->with('error', "Échec de l'ajout d'une suggestion" . implode(', ', $suggestionModel->errors()));
+        if($this->validate($validation->getRules())){
+            if ($suggestionModel->save($suggestion)) {
+                return view('user_interfaces/Soumettre_Forms/Soumettre_Suggestion', ['showSuccessModal' => true]);
+            } else {
+                return redirect()->back()->with('error', "Échec de l'ajout d'une suggestion" . implode(', ', $suggestionModel->errors()));
+            }
+        }else{
+            return redirect()->back()->withInput()->with("error","Les informations que vous avez fournies ne sont pas valides");
         }
     }
-
     public function afficher_suggestions()
     {
         $suggestionModel = new SuggestionModel();
@@ -44,7 +55,7 @@ class SuggestionController extends BaseController
     {
         $suggestionModel = new SuggestionModel();
         if ($suggestionModel->delete($id)) {
-            return redirect()->to('/Liste_Suggestions')->with('success', 'Suggestions supprimée.');
+            return redirect()->to('/Liste_Suggestions')->with('success', 'Suggestion supprimée.');
         } else {
             return redirect()->to('/Liste_Suggestions')->with('error', 'Échec de la suppression.');
         }

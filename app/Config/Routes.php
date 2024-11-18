@@ -22,6 +22,12 @@ $routes->get('/A_propos',[A_proposController::class,'index']);
 //-----------------formulaires routes-----------------------//
 $routes->get('/Soumettre_Reclamation',[ReclamationController::class,'fillClaim']);
 $routes->get('/Soumettre_Observation',[ObservationController::class,'index']);
+
+//
+$routes->get('/Liste_Admins',[Gestion_adminsController::class,'afficher_admins']);
+$routes->get('admin/supprimer_admin/(:num)', [Gestion_adminsController::class,'supprimer_admin/$1']);
+//les requêtes GET (pour afficher le formulaire) et POST (pour soumettre les données du formulaire) vers la méthode modifier_admin.
+$routes->match(['get', 'post'], 'admin/modifier_admin/(:num)', 'Gestion_adminsController::modifier_admin/$1');
 //
 $routes->get('/Liste_Observations',[ObservationController::class,'afficher_observations']);
 $routes->get('admin/supprimer_observation/(:num)', [ObservationController::class,'supprimer_observation/$1']);
@@ -36,7 +42,7 @@ $routes->post('/ajouteSuggestion',[SuggestionController::class,'ajouterSuggestio
 $routes->get('/Connexion-Connexion-admin',[ConnexionController::class,'index']);
 $routes->post('Admin/Connexion',[ConnexionController::class,'Connexion']);
 
-$routes->get('/Gestion_admins',[Gestion_adminsController::class,'index']);
+$routes->get('/Ajouter_admins',[Gestion_adminsController::class,'index']);
 $routes->post('/ajouteAdmin', [Gestion_adminsController::class,'ajouterAdmin']);
 $routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
 
