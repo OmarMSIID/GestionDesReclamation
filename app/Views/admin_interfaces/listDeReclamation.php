@@ -158,9 +158,9 @@
                     <button id="menuToggle">&#9776;</button>
                 </li>
                 <li class="menu-item hidden"><a href="/admin/dashboard">dashboard</a></li>
-                <li class="menu-item hidden"><a href="/statistique">statistique</a>
+                <li class="menu-item hidden"><a href="/Statistiques">statistique</a>
                 </li>
-                <li class="menu-item hidden"><a href="/admin/logout" target="_blank">logout</a></li>
+                <li class="menu-item hidden"><a href="/admin/logout" >logout</a></li>
             </ul>
         </div>
     </header>

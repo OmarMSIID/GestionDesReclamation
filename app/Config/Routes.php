@@ -39,14 +39,16 @@ $routes->get('admin/supprimer_suggestion/(:num)', [SuggestionController::class,'
 $routes->post('/ajouteObservation',[ObservationController::class,'ajouterObservation']);
 $routes->get('/Soumettre_Suggestion',[SuggestionController::class,'index']);
 $routes->post('/ajouteSuggestion',[SuggestionController::class,'ajouterSuggestion']);
-$routes->get('/Connexion-Connexion-admin',[ConnexionController::class,'index']);
-$routes->post('Admin/Connexion',[ConnexionController::class,'Connexion']);
+
 
 $routes->get('/Ajouter_admins',[Gestion_adminsController::class,'index']);
 $routes->post('/ajouteAdmin', [Gestion_adminsController::class,'ajouterAdmin']);
 $routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
 
 //-----------------admin routes-----------------------//
+$routes->get('/admin/logout',[ConnexionController::class,'logout']);
+$routes->get('/Connexion-Connexion-admin',[ConnexionController::class,'index']);
+$routes->post('Admin/Connexion',[ConnexionController::class,'Connexion']);
 $routes->get('/admin/List_Reclamation',[ReclamationController::class,'claimList']);
 $routes->get('/admin/view/(:segment)',[ReclamationController::class,'viewClaim']);
 $routes->get('/admin/delete/(:segment)',[ReclamationController::class,'deleteClaim']);

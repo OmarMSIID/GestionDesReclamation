@@ -41,5 +41,10 @@ class ConnexionController extends BaseController
             return redirect()->back()->withInput()->with("error","Email doit etre valid"."<br>"."Mot de passe doit contenir au moins 8 caractères.");
         }
     }
+    public function logout(){
+        $session=session();
+        $session->destroy();
+        return redirect()->to("/Connexion-Connexion-admin");
+    }
     
 }

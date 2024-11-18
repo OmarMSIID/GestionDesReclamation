@@ -5,15 +5,11 @@ use CodeIgniter\Model;
 
 class ReclamationModel extends Model{
     protected $table='reclamation';
-
     protected $primaryKey='id';
     protected $returnType = 'App\Entities\Reclamation';
-    protected $allowedFields =['sujet','nom_utilisateur','description','email','status','photo'];
+    protected $allowedFields =['sujet','nom_utilisateur','description','email','status','date','photo'];
 
-    public function counteRefuseState(){
-        $num=$this->where('status','REFUSE')->countAllResults();
-        return $num;
-    }
+    
 
     public function counteAcceptedState(){
         $num=$this->where('status','ACCEPTE')->countAllResults();
@@ -26,6 +22,16 @@ class ReclamationModel extends Model{
     }
 
    
+
+   
+
+    public function getData(){
+        $data=$this->select('date ,count(sujet) as numClaim')
+            ->groupBy('date')
+            ->findAll();
+        return $data;
+    }
+
 }
 
 ?>

@@ -4,13 +4,15 @@
 namespace App\Controllers;
 
 use App\Models\ReclamationModel;
-
+use App\Models\RefusedClaimModel;
 use Dompdf\Dompdf;
 
 class ReclamationController extends BaseController
 {
     public function fillClaim()
     {
+        $session=session();
+        $session->destroy();
         return view('user_interfaces/Soumettre_Forms/Soumettre_Reclamation');
     }
 
@@ -38,18 +40,15 @@ class ReclamationController extends BaseController
             $reclamation->setEmail($this->request->getPost('email'));
             $reclamation->setDescription($this->request->getPost('description'));
             $reclamation->setStatus();
+            $reclamation->setDate();
             $reclamation->setPhoto($imageName);
             $session = session();
-            $session->setFlashdata('succ', 'votre reclamation a ajoute .');
             $model->save($reclamation);
             $email = \config\Services::email();
             $email->setTo($reclamation->getEmail());
             $email->setFrom('omar.bhai2015@gmail.com');
             $email->setSubject("Reclamation .");
-            $email->setMessage("bonjour " . $reclamation->getNomUtilisateur() . "<br> votre réclamation a envoyée avec succés .<br> <br> a la date : " . date('Y-m-d H:i:s') . ".");
-            $fileName = 'reclamation de ' . $reclamation->getNomUtilisateur() . '.pdf';
-            $filePath = $this->generatePdf($reclamation, $fileName);
-            $email->attach($filePath);
+            $email->setMessage("bonjour " . $reclamation->getNomUtilisateur() . "<br> votre réclamation a envoyée avec succés .<br> <br> a la date : " . $reclamation->getDate() . ".");
             $bole = $email->send();
             if (!$bole) {
                 $session->set("email", 'on a un probleme dans email sender ');
@@ -66,24 +65,37 @@ class ReclamationController extends BaseController
 
     public function claimList()
     {
+        $session= session();
         $model = new ReclamationModel();
-
-        return view('admin_interfaces/listDeReclamation', ['claims' => $model->findAll()]);
+        if($session->get("logged")){
+            return view('admin_interfaces/listDeReclamation', ['claims' => $model->findAll()]);
+        }
+        else{
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
     }
 
     public function viewClaim($id)
     {
+        $session=session();
         $model = new ReclamationModel();
-        return view('admin_interfaces/reclamationInfo', ['claim' => $model->find($id)]);
+        if($session->get("logged")){
+            return view('admin_interfaces/reclamationInfo', ['claim' => $model->find($id)]);
+        }
+        else{
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
     }
     
 
     public function deleteClaim($id)
     {
+        $refuseModel=new RefusedClaimModel();
         $model = new ReclamationModel();
         $reclamation = $model->find($id);
         $reclamation->setStatus("REFUSE");
         $model->save($reclamation);
+        $refuseModel->save(['reason'=>$reclamation->getSujet()]);
         $email = \Config\Services::email();
         $email->setTo($reclamation->getEmail());
         $email->setFrom('omar.bhai2015@gmail.com');
@@ -138,7 +150,14 @@ class ReclamationController extends BaseController
     }
 
     public function getDashboard(){
-        return view('/admin_interfaces/dashboard');
+        $session= session();
+        
+        if($session->get("logged")){
+            return view('/admin_interfaces/dashboard');
+        }
+        else{
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
     }
 
     //------------generate pdf ----------------//

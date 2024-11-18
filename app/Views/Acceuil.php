@@ -19,7 +19,7 @@
             <li class="menu-item hidden"><a href="/">Acceuil</a></li>
             <li class="menu-item hidden"><a href="/A_propos">A propos</a>
             </li>
-            <li class="menu-item hidden"><a href="/Statistiques" target="_blank">Statistiques</a></li>
+            <li class="menu-item hidden"><a href="/Statistiques" >Statistiques</a></li>
         </ul>
     </div>
     <div class="heroe">

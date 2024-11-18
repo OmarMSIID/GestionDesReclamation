@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +16,13 @@
             padding: 0;
             border-right: 1px solid #dee2e6;
         }
+
         .sidebar h4 {
             padding-top: 20px;
             padding-bottom: 30px;
             font-weight: bold;
         }
+
         .nav-link {
             color: #495057;
             font-size: 16px;
@@ -28,59 +31,69 @@
             align-items: center;
             width: 100%;
         }
+
         .nav-link.active {
             background-color: #e2e6ea;
             color: #007bff;
             font-weight: bold;
         }
+
         .nav-link i {
             margin-right: 10px;
             font-size: 18px;
         }
+
         .nav-link:hover {
             color: #007bff;
             text-decoration: none;
         }
+
         .text-danger {
             color: #dc3545 !important;
             font-weight: bold;
         }
-        .logout{
+
+        .logout {
             position: absolute;
             bottom: 0;
             color: whitesmoke;
             background-color: rgb(194, 58, 58);
             width: 100%;
-            padding:2px 20px ;
+            padding: 2px 20px;
             text-align: center;
             align-items: center;
             justify-content: center;
         }
-        .logout:hover{
+
+        .logout:hover {
             background-color: rgb(194, 58, 58);
         }
-        .logout_a:hover{
-            color:whitesmoke;
+
+        .logout_a:hover {
+            color: whitesmoke;
         }
-        .logout_a{
+
+        .logout_a {
             color: whitesmoke;
         }
     </style>
+    
 </head>
+
 <body style="background-color: #dfe9f5;">
-<?php if (session()->getFlashdata('success')) : ?>
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <div class="alert alert-success mb-0">
-                        <?= session()->getFlashdata('success') ?>
+    <?php if (session()->getFlashdata('success')) : ?>
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="alert alert-success mb-0">
+                            <?= session()->getFlashdata('success') ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-<?php endif; ?>
+    <?php endif; ?>
     <div class="container-fluid">
         <div class="row">
             <nav class="  d-md-block sidebar">
@@ -108,7 +121,7 @@
                             </a>
                         </li>
                         <li class="nav-item logout text-center">
-                            <a class="nav-link btn-btn danger logout_a text-center" href="<?= base_url('admin/deconnecter') ?>">
+                            <a class="nav-link btn-btn danger logout_a text-center" href="/admin/logout">
                                 <i class="fas fa-sign-out-alt fa-fw"></i> Déconnecter
                             </a>
                         </li>
@@ -118,6 +131,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="content">
                     <?= $this->renderSection('content') ?>
+                    
                 </div>
             </main>
         </div>
@@ -135,4 +149,5 @@
         });
     </script>
 </body>
+
 </html>

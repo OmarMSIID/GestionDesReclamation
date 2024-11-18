@@ -13,6 +13,7 @@ class Reclamation extends Entity{
         'email'          => null,
         'description'    => null,
         'status'         => null,
+        'date'           =>null,
         'photo'          => null,
     ];
 
@@ -76,6 +77,15 @@ class Reclamation extends Entity{
     public function getStatus(): ?string
     {
         return $this->attributes['status'];
+    }
+
+    public function setDate(){
+        $this->attributes['date']=date('Y m d');
+        return $this;
+    }
+
+    public function getDate(){
+        return $this->attributes['date'];
     }
 
     public function getPhoto(): ?string
