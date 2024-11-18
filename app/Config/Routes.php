@@ -8,6 +8,7 @@ use App\Controllers\SuggestionController;
 use App\Controllers\StatistiquesController;
 use App\Controllers\ConnexionController;
 use App\Controllers\Gestion_adminsController;
+use App\Controllers\SuivreReclamationController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -22,7 +23,8 @@ $routes->get('/A_propos',[A_proposController::class,'index']);
 //-----------------formulaires routes-----------------------//
 $routes->get('/Soumettre_Reclamation',[ReclamationController::class,'fillClaim']);
 $routes->get('/Soumettre_Observation',[ObservationController::class,'index']);
-
+$routes->get('/Suivre_Reclamation', [SuivreReclamationController::class, 'afficher_formulaire']);
+$routes->post('suivre-reclamation-formulaire', [SuivreReclamationController::class,'verifierEtatReclamation']);
 //
 $routes->get('/Liste_Admins',[Gestion_adminsController::class,'afficher_admins']);
 $routes->get('admin/supprimer_admin/(:num)', [Gestion_adminsController::class,'supprimer_admin/$1']);
@@ -35,7 +37,9 @@ $routes->get('admin/supprimer_observation/(:num)', [ObservationController::class
 $routes->get('/Liste_Suggestions',[SuggestionController::class,'afficher_suggestions']);
 $routes->get('admin/supprimer_suggestion/(:num)', [SuggestionController::class,'supprimer_suggestion/$1']);
 
-//
+// route pour telecharger le pdf qui contient quelques informations d'une reclamation
+$routes->get('telecharger-reclamation/(:any)', 'ReclamationController::telechargerPdf/$1');
+
 $routes->post('/ajouteObservation',[ObservationController::class,'ajouterObservation']);
 $routes->get('/Soumettre_Suggestion',[SuggestionController::class,'index']);
 $routes->post('/ajouteSuggestion',[SuggestionController::class,'ajouterSuggestion']);
