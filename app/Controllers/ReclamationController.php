@@ -44,16 +44,6 @@ class ReclamationController extends BaseController
             $reclamation->setPhoto($imageName);
             $session = session();
             $model->save($reclamation);
-            $email = \config\Services::email();
-            $email->setTo($reclamation->getEmail());
-            $email->setFrom('omar.bhai2015@gmail.com');
-            $email->setSubject("Reclamation .");
-            $email->setMessage("bonjour " . $reclamation->getNomUtilisateur() . "<br> votre réclamation a envoyée avec succés .<br> <br> a la date : " . $reclamation->getDate() . ".");
-            $bole = $email->send();
-            if (!$bole) {
-                $session->set("email", 'on a un probleme dans email sender ');
-            }
-
             return redirect()->to('/');
         } else {
             $session = session();
