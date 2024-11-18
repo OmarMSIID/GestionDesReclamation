@@ -41,7 +41,7 @@
             </p>
             <div class="card-buttons">
                 <a href="/Soumettre_Reclamation"><button type="submit" id="Soumettre1"><i class="fa-regular fa-paper-plane" style="color: white;"></i>   Soumettre</button></a>
-                <button type="submit" id="Suivre"><i class="fa-regular fa-hand-point-up"></i>   Suivre</button>
+                <a href="/Suivre_Reclamation"><button type="submit" id="Suivre"><i class="fa-regular fa-hand-point-up"></i>   Suivre</button></a>
             </div>
         </div>
         <div class="card">
