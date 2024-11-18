@@ -75,7 +75,7 @@
                     <h4>Tableau de Bord</h4>
                     <ul class="nav flex-column mt-5 text-center">
                         <li class="nav-item text-center">
-                            <a class="nav-link text-center ml-2" href="<?= base_url('Liste_Reclamations') ?>">
+                            <a class="nav-link text-center ml-2" href="<?= base_url('admin/List_Reclamation') ?>">
                                 <i class="fas fa-exclamation-circle fa-fw"></i> Réclamations
                             </a>
                         </li>

@@ -47,7 +47,7 @@ class ReclamationController extends BaseController
             $email->setFrom('omar.bhai2015@gmail.com');
             $email->setSubject("Reclamation .");
             $email->setMessage("bonjour " . $reclamation->getNomUtilisateur() . "<br> votre réclamation a envoyée avec succés .<br> <br> a la date : " . date('Y-m-d H:i:s') . ".");
-            $fileName = 'reclamation de ' . $reclamation->getN . '.pdf';
+            $fileName = 'reclamation de ' . $reclamation->getNomUtilisateur() . '.pdf';
             $filePath = $this->generatePdf($reclamation, $fileName);
             $email->attach($filePath);
             $bole = $email->send();
@@ -102,7 +102,7 @@ class ReclamationController extends BaseController
 
         if ($boolean) {
             $email->send();
-            return redirect()->to("/admin/dashboard");
+            return redirect()->to("admin/List_Reclamation");
         } else {
             return "error!!";
         }
@@ -131,7 +131,7 @@ class ReclamationController extends BaseController
         $email->setMessage($message);
 
         if ($email->send()) {
-            return redirect()->to("/admin/dashboard");
+            return redirect()->to("admin/List_Reclamation");
         } else {
             return "Erreur lors de l'envoi de l'email!";
         }

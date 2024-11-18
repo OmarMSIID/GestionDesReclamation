@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <style>
         body {
@@ -28,11 +29,17 @@
             margin-bottom: 10px;
         }
 
-        .footer {
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f8f9fa;
             text-align: center;
-            margin-top: 20px;
+            padding: 10px 0;
             font-size: 0.9em;
             color: #888;
+            border-top: 1px solid #ddd;
         }
 
         hr {
@@ -41,11 +48,28 @@
             background-color: #ddd;
             margin: 10px 0;
         }
+
+        .image-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 5px;
+            max-height: 300px; /* Ensures the image doesn’t get too large */
+            object-fit: contain;
+        }
     </style>
 </head>
+
 <body>
     <h1>Reclamation</h1>
-    
+
     <hr>
 
     <div class="section">
@@ -73,8 +97,13 @@
         <span class="data"><?= $claim->getDescription() ?></span>
     </div>
 
-    <div class="footer">
-        <p>Date: <?= date('Y-m-d H:i:s') ?></p>
+    <div class="image-container">
+        <img src="<?= 'data:image/' . pathinfo($claim->getPhoto(), PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents('photos/' . $claim->getPhoto())) ?>" alt="Reclamation Photo">
     </div>
+
+    <footer>
+        <p>Date: <?= date('Y-m-d H:i:s') ?></p>
+    </footer>
 </body>
+
 </html>

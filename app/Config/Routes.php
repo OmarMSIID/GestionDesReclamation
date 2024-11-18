@@ -41,7 +41,7 @@ $routes->post('/ajouteAdmin', [Gestion_adminsController::class,'ajouterAdmin']);
 $routes->post('/ajouteReclamation',[ReclamationController::class,'addClaim']);
 
 //-----------------admin routes-----------------------//
-$routes->get('/admin/list',[ReclamationController::class,'claimList']);
+$routes->get('/admin/List_Reclamation',[ReclamationController::class,'claimList']);
 $routes->get('/admin/view/(:segment)',[ReclamationController::class,'viewClaim']);
 $routes->get('/admin/delete/(:segment)',[ReclamationController::class,'deleteClaim']);
 $routes->get('/admin/accepter/(:segment)',[ReclamationController::class,'accepteClaim']);
