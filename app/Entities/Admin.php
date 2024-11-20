@@ -10,6 +10,7 @@ class Admin extends Entity
         'email' => null,
         'nom_utilisateur' => null,
         'mot_de_passe' => null,
+        'reinitialisation_id' => null, // Pour stocker l'identifiant unique temporaire
     ];
 
     public function setMotDePasse(string $password)

@@ -7,7 +7,7 @@ class ConnexionController extends BaseController
 {
     public function index(): string
     {
-        return view('user_interfaces/Connexion');
+        return view('admin_interfaces/Connexion');
     }
 
     public function Connexion() {
@@ -45,6 +45,88 @@ class ConnexionController extends BaseController
         $session=session();
         $session->destroy();
         return redirect()->to("/Connexion-Connexion-admin");
+    }
+
+    public function motDePasseOublie()
+    {
+        return view('admin_interfaces/reinitialisation_mot_de_passe');
+    }
+
+    public function envoyerLien()
+    {
+        $email = $this->request->getPost('email');
+        $model = new AdminModel();
+        $admin = $model->where('email', $email)->first();
+
+        if ($admin) {
+            // generation d'un id unique
+            $identifiantUnique = uniqid(bin2hex(random_bytes(4)), true);
+
+            // mettre à jour l'identifiant unique pour l'admin
+            $admin->reinitialisation_id = $identifiantUnique;
+            $model->save($admin);
+
+            // envoyer l'email de reinitialisation
+            $email_Env = \Config\Services::email();
+
+            $email_Env->setTo($email);
+            $email_Env->setFrom('ayoub.chammakh.23@edu.uiz.ac.ma', 'Gestion-des-reclamations');
+            $email_Env->setSubject('Réinitialisation de votre mot de passe');
+            
+            // creation du lien pour la reinitialisation
+            $resetLink = base_url("admin/reinitialiser-mot-de-passe/$identifiantUnique");
+            $email_Env->setMessage("Bonjour, \n\nPour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant : \n$resetLink");
+
+            // envoyer email
+            if ($email_Env->send()) {
+                log_message('info', "Lien de réinitialisation envoyé : " . $resetLink);
+                return redirect()->to(base_url('Connexion-Connexion-admin'))->with('success', 'Lien de réinitialisation envoyé avec succès.');
+            } else {
+                log_message('error', "Échec de l'envoi de l'e-mail de réinitialisation.");
+                return redirect()->back()->with('error', 'Erreur lors de l\'envoi du lien de réinitialisation.');
+            }
+        }
+
+        return redirect()->back()->with('error', 'E-mail non trouvé.');
+    }
+
+    public function reinitialiserMotDePasse($identifiantUnique)
+    {
+        $model = new AdminModel();
+        $admin = $model->where('reinitialisation_id', $identifiantUnique)->first();
+
+        if ($admin) {
+            return view('admin_interfaces/nouveau_mot_de_passe', ['identifiant' => $identifiantUnique]);
+        }
+
+        return redirect()->to(base_url('Connexion-Connexion-admin'))->with('error', 'Lien de réinitialisation invalide ou expiré.');
+    }
+
+    public function mettreAJourMotDePasse()
+    {
+        $identifiantUnique = $this->request->getPost('identifiant');
+        $nouveauMotDePasse = $this->request->getPost('mot_de_passe');
+
+        $validation = \Config\Services::Validation();
+        $validation->setRules([
+            'mot_de_passe' =>'required|min_length[8]|',
+        ]);
+        $model = new AdminModel();
+        $admin = $model->where('reinitialisation_id', $identifiantUnique)->first();
+
+        if($this->Validate($validation->getRules())){
+            if ($admin) {
+                $admin->setMotDePasse($nouveauMotDePasse);
+                $admin->reinitialisation_id = null; // reinitialiser l'identifiant unique
+                $model->save($admin);
+
+                return redirect()->to(base_url('Connexion-Connexion-admin'))->with('success', 'Mot de passe mis à jour avec succès.');
+            }
+
+            return redirect()->to(base_url('connexion'))->with('error', 'Erreur lors de la mise à jour du mot de passe.');
+        }else{
+            return redirect()->back()->withInput()->with("error","Mot de passe doit contenir au moins 8 caractères.");
+        }
     }
     
 }
