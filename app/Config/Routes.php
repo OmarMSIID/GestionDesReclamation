@@ -60,4 +60,10 @@ $routes->get('/admin/accepter/(:segment)',[ReclamationController::class,'accepte
 $routes->get('/admin/dashboard',[ReclamationController::class,'getDashboard']);
 
 
+$routes->get('admin/mot-de-passe-oublie', 'ConnexionController::motDePasseOublie');
+$routes->post('admin/envoyer-lien', 'ConnexionController::envoyerLien');
+$routes->get('admin/reinitialiser-mot-de-passe/(:any)', 'ConnexionController::reinitialiserMotDePasse/$1');
+$routes->post('admin/mettre-a-jour-mot-de-passe', 'ConnexionController::mettreAJourMotDePasse');
+
+
 

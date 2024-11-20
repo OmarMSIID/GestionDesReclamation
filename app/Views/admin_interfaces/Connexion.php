@@ -34,6 +34,12 @@
             <?= session()->getFlashdata('error') ?>
         </div>
     <?php endif; ?>
+
+    <?php if (session()->getFlashdata('success')) : ?>
+    <div class="alert alert-success position-absolute" style="top: 4%; left: 50%; transform: translate(-50%, -50%);">
+        <?= session()->getFlashdata('success') ?>
+    </div>
+    <?php endif; ?>
     
     <div class="d-flex justify-content-center align-items-center container h-100 vh-100">
         <div id="div2" class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
@@ -60,6 +66,9 @@
                             <button type="submit" class="btn btn-primary ms-auto">
                                 Connexion
                             </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="<?= base_url('admin/mot-de-passe-oublie') ?>" class="text-decoration-none">Mot de passe oublié ?</a>
                         </div>
                     </form>
                 </div>
