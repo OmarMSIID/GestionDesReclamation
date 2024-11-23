@@ -45,14 +45,21 @@ class SuggestionController extends BaseController
     }
     public function afficher_suggestions()
     {
+        $session=session();
+        if(!$session->get("logged")){
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
         $suggestionModel = new SuggestionModel();
         $data['suggestions'] = $suggestionModel->findAll();
-        
         return view('admin_interfaces/Gestion_Suggestion', $data);
     }
 
     public function supprimer_suggestion($id)
     {
+        $session=session();
+        if(!$session->get("logged")){
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
         $suggestionModel = new SuggestionModel();
         if ($suggestionModel->delete($id)) {
             return redirect()->to('/Liste_Suggestions')->with('success', 'Suggestion supprimée.');

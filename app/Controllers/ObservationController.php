@@ -46,6 +46,10 @@ class ObservationController extends BaseController
 
     public function afficher_observations()
     {
+        $session=session();
+        if(!$session->get("logged")){
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
         $observationModel = new ObservationModel();
         $data['observations'] = $observationModel->findAll();
         
@@ -54,6 +58,10 @@ class ObservationController extends BaseController
 
     public function supprimer_observation($id)
     {
+        $session=session();
+        if(!$session->get("logged")){
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
         $observationModel = new ObservationModel();
         if ($observationModel->delete($id)) {
             return redirect()->to('/Liste_Observations')->with('success', 'Observation supprimée.');

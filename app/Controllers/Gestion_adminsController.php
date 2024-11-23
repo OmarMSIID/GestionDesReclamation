@@ -44,6 +44,10 @@ class Gestion_adminsController extends BaseController
 
     public function afficher_admins()
     {
+        $session=session();
+        if(!$session->get("logged")){
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
         $adminModel = new AdminModel();
         $data['admins'] = $adminModel->findAll();
         
@@ -52,6 +56,10 @@ class Gestion_adminsController extends BaseController
 
     public function supprimer_admin($id)
     {
+        $session=session();
+        if(!$session->get("logged")){
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
         $adminModel = new AdminModel();
         if ($adminModel->delete($id)) {
             return redirect()->back()->with("success", "Admin supprimée.");
@@ -62,6 +70,10 @@ class Gestion_adminsController extends BaseController
 
     public function modifier_admin($id)
     {
+        $session=session();
+        if(!$session->get("logged")){
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
         $adminModel = new AdminModel();
         $admin = $adminModel->find($id);
 
