@@ -123,6 +123,9 @@ class ReclamationController extends BaseController
     {
         $model = new ReclamationModel();
         $reclamation = $model->find($id);
+        if($reclamation->getStatus()=="ACCEPTE"){
+            return redirect()->to("admin/List_Reclamation")->with('error','ce reclamation deja accepter');
+        }
         $reclamation->setStatus("ACCEPTE");
         $model->save($reclamation);
 
