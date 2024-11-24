@@ -183,9 +183,7 @@
                 <li class="menu-toggle">
                     <button id="menuToggle">&#9776;</button>
                 </li>
-                <li class="menu-item hidden"><a href="/admin/dashboard">dashboard</a></li>
-                <li class="menu-item hidden"><a href="/Statistiques">statistique</a>
-                </li>
+                <li class="menu-item hidden"><a href="/admin/List_Reclamation">dashboard</a></li>
                 <li class="menu-item hidden"><a href="/admin/logout">logout</a></li>
             </ul>
         </div>
