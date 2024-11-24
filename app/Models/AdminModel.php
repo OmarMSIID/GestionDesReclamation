@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class AdminModel extends Model{
     protected $table='admin';
     protected $returnType = 'App\Entities\Admin';
-    protected $allowedFields =['email','nom_utilisateur','mot_de_passe','reinitialisation_id'];
+    protected $allowedFields =['email','nom_utilisateur','mot_de_passe','reinitialisation_id','role'];
 }
 
 ?>

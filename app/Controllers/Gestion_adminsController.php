@@ -30,7 +30,14 @@ class Gestion_adminsController extends BaseController
 
         if ($this->validate($validation->getRules()) && is_string($mot_de_passe) && !empty($mot_de_passe)) {
             $admin->setMotDePasse($mot_de_passe);
-
+            //verfie si exist un des admin dans la base de donnees.
+            $count=$adminModel->countAllResults();
+            if($count==0){
+                $admin->role="super_admin";
+            }
+            else{
+                $admin->role="admin";
+            }
             // Sauvegarder dans la base de données
             if ($adminModel->save($admin)) {
                 return view('admin_interfaces/Ajouter_admins.php', ['showSuccessModal' => true]);
@@ -49,8 +56,7 @@ class Gestion_adminsController extends BaseController
             return redirect()->to("/Connexion-Connexion-admin");
         }
         $adminModel = new AdminModel();
-        $data['admins'] = $adminModel->findAll();
-        
+        $data['admins'] = $adminModel->where("role","admin")->findAll();
         return view('admin_interfaces/Gestion_admins', $data);
     }
 

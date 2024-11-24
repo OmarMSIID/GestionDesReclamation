@@ -7,6 +7,8 @@ class ConnexionController extends BaseController
 {
     public function index(): string
     {
+        $session=session();
+        $session->destroy();
         return view('admin_interfaces/Connexion');
     }
 
@@ -26,16 +28,21 @@ class ConnexionController extends BaseController
         if($this->Validate($validation->getRules())){
             if ($utilisateur !== null && is_string($mot_de_passe) && !empty($mot_de_passe)) {
                 if (password_verify($mot_de_passe, $utilisateur->mot_de_passe)) {
+                   
                     $session = session();
                     $session->regenerate();
+                    if($utilisateur->role==='super_admin'){
+                        $session->set('super_admin',true);
+                    }
                     $session->set("logged", true);
                     $session->set("nom_utilisateur", $utilisateur->nom_utilisateur);
+        
                     return redirect()->to('admin/List_Reclamation');
                 } else {
                     return redirect()->back()->withInput()->with("error","E-mail ou mot de passe incorrecte !");
                 }
             }else{
-                return redirect()->back()->withInput()->with("error","Cet utilisateur n'existe pas !");
+                return redirect()->back()->withInput()->with("error","Cet utilisateur n'existe pas!");
             }
         }else{
             return redirect()->back()->withInput()->with("error","Email doit etre valid"."<br>"."Mot de passe doit contenir au moins 8 caractères.");
@@ -49,6 +56,8 @@ class ConnexionController extends BaseController
 
     public function motDePasseOublie()
     {
+        $session=session();
+        $session->destroy();
         return view('admin_interfaces/reinitialisation_mot_de_passe');
     }
 
@@ -92,6 +101,8 @@ class ConnexionController extends BaseController
 
     public function reinitialiserMotDePasse($identifiantUnique)
     {
+        $session=session();
+        $session->destroy();
         $model = new AdminModel();
         $admin = $model->where('reinitialisation_id', $identifiantUnique)->first();
 

@@ -77,7 +77,7 @@
             color: whitesmoke;
         }
     </style>
-    
+
 </head>
 
 <body style="background-color: #dfe9f5;">
@@ -115,11 +115,13 @@
                                 <i class="fas fa-lightbulb fa-fw"></i> Suggestions
                             </a>
                         </li>
-                        <li class="nav-item text-center">
-                            <a class="nav-link text-center ml-2" href="<?= base_url('Liste_Admins') ?>">
-                                <i class="fas fa-users fa-fw"></i> Utilisateurs
-                            </a>
-                        </li>
+                        <?php if (session()->get('super_admin')): ?>
+                            <li class="nav-item text-center">
+                                <a class="nav-link text-center ml-2" href="<?= base_url('Liste_Admins') ?>">
+                                    <i class="fas fa-users fa-fw"></i> Utilisateurs
+                                </a>
+                            </li>
+                        <?php endif ?>
                         <li class="nav-item logout text-center">
                             <a class="nav-link btn-btn danger logout_a text-center" href="/admin/logout">
                                 <i class="fas fa-sign-out-alt fa-fw"></i> Déconnecter
@@ -131,7 +133,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="content">
                     <?= $this->renderSection('content') ?>
-                    
+
                 </div>
             </main>
         </div>
