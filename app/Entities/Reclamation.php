@@ -88,7 +88,7 @@ class Reclamation extends Entity{
     }
 
     public function setDate(){
-        $this->attributes['date']=date('Y m d');
+        $this->attributes['date']=date('Y-m-d');
         return $this;
     }
 

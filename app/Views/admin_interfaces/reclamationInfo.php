@@ -7,19 +7,19 @@
     <title>Reclamation Info</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        
         body {
             background-color: #dfe9f6;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
+
         header {
             background-color: #dfe9f5;
             padding: .4rem 0 0;
         }
 
-        
+
         header ul {
             border-bottom: 1px solid rgba(242, 242, 242, 1);
             list-style-type: none;
@@ -186,7 +186,7 @@
                 <li class="menu-item hidden"><a href="/admin/dashboard">dashboard</a></li>
                 <li class="menu-item hidden"><a href="/Statistiques">statistique</a>
                 </li>
-                <li class="menu-item hidden"><a href="/admin/logout" >logout</a></li>
+                <li class="menu-item hidden"><a href="/admin/logout">logout</a></li>
             </ul>
         </div>
     </header>
@@ -219,10 +219,12 @@
         <div class="image-container">
             <img src="<?= base_url('photos/' . $claim->getPhoto()) ?>" alt="Reclamation Photo">
         </div>
-        <div class="actions">
-            <a href="/admin/accepter/<?= $claim->id ?>" class="btn btn-accept">Accepter</a>
-            <a href="/admin/delete/<?= $claim->id ?>" class="btn btn-delete">Supprimer</a>
-        </div>
+        <?php if ($claim->getStatus() == "EN_COUR_DE_TRAITEMENT") : ?>
+            <div class="actions">
+                <a href="/admin/accepter/<?= $claim->id ?>" class="btn btn-accept">Accepter</a>
+                <a href="/admin/delete/<?= $claim->id ?>" class="btn btn-delete">Supprimer</a>
+            </div>
+        <?php endif ?>
     </div>
 </body>
 
