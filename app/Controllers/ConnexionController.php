@@ -30,7 +30,7 @@ class ConnexionController extends BaseController
                     $session->regenerate();
                     $session->set("logged", true);
                     $session->set("nom_utilisateur", $utilisateur->nom_utilisateur);
-                    return redirect()->to('admin/dashboard');
+                    return redirect()->to('admin/List_Reclamation');
                 } else {
                     return redirect()->back()->withInput()->with("error","E-mail ou mot de passe incorrecte !");
                 }
