@@ -50,7 +50,8 @@ class SuggestionController extends BaseController
             return redirect()->to("/Connexion-Connexion-admin");
         }
         $suggestionModel = new SuggestionModel();
-        $data['suggestions'] = $suggestionModel->findAll();
+        $data['suggestions'] = $suggestionModel->paginate(4, 'default');
+        $data['pager'] = $suggestionModel->pager;
         return view('admin_interfaces/Gestion_Suggestion', $data);
     }
 

@@ -51,8 +51,9 @@ class ObservationController extends BaseController
             return redirect()->to("/Connexion-Connexion-admin");
         }
         $observationModel = new ObservationModel();
-        $data['observations'] = $observationModel->findAll();
-        
+        //5 observations par page
+        $data['observations'] = $observationModel->paginate(4, 'default');
+        $data['pager'] = $observationModel->pager;
         return view('admin_interfaces/Gestion_Observation', $data);
     }
 

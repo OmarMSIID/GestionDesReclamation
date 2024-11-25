@@ -47,7 +47,7 @@ class ReclamationController extends BaseController
             $reclamation->setPhoto($imageName);
             $reclamation->setGenerated_id($generated_id);
 
-            $session = session();
+            
             $model->save($reclamation);
 
             // Affichage de la vue de confirmation
@@ -66,7 +66,10 @@ class ReclamationController extends BaseController
         $model = new ReclamationModel();
 
         if ($session->get("logged")) {
-            return view('admin_interfaces/listDeReclamation', ['claims' => $model->findAll()]);
+            //5 reclamations par page
+            $data['claims'] = $model->paginate(4, 'default');
+            $data['pager'] = $model->pager;
+            return view('admin_interfaces/listDeReclamation', $data);
         } else {
             return redirect()->to("/Connexion-Connexion-admin");
         }

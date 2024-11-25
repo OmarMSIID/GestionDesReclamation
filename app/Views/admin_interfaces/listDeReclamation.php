@@ -36,6 +36,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <!--pagination-->
+    <div class="d-flex justify-content-center mt-4">
+        <?= $pager->links('default', 'bootstrap_pagination') ?>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
