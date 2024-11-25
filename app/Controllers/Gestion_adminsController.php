@@ -7,12 +7,18 @@ use App\Entities\Admin;
 
 class Gestion_adminsController extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-        return view('admin_interfaces/Ajouter_admins.php');
+        $session=session();
+        if(!$session->get("super_admin")){
+            return redirect()->back();
+        }else{
+            return view('admin_interfaces/Ajouter_admins.php');
+        }
     }
     public function ajouterAdmin()
     {
+
         $adminModel = new AdminModel();
         $admin = new Admin();
 
