@@ -74,35 +74,39 @@
 
     <div class="section">
         <span class="data-label">Nom d'utilisateur:</span>
-        <span class="data"><?= $claim->getNomUtilisateur() ?></span>
+        <span class="data"><?= $reclamation->getNomUtilisateur() ?></span>
     </div>
-
+    <div class="section">
+        <span class="data-label">ID de Réclamation :</span>
+        <span class="data"><?= $reclamation->generated_id ?></span>
+    </div>
+     
     <div class="section">
         <span class="data-label">Email:</span>
-        <span class="data"><?= $claim->getEmail() ?></span>
+        <span class="data"><?= $reclamation->getEmail() ?></span>
     </div>
 
     <div class="section">
         <span class="data-label">Sujet:</span>
-        <span class="data"><?= $claim->getSujet() ?></span>
+        <span class="data"><?= $reclamation->getSujet() ?></span>
     </div>
 
     <div class="section">
         <span class="data-label">Status:</span>
-        <span class="data"><?= $claim->getStatus() ?></span>
+        <span class="data"><?= $reclamation->getStatus() ?></span>
     </div>
 
     <div class="section">
         <span class="data-label">Description:</span>
-        <span class="data"><?= $claim->getDescription() ?></span>
+        <span class="data"><?= $reclamation->getDescription() ?></span>
     </div>
 
     <div class="image-container">
-        <img src="<?= 'data:image/' . pathinfo($claim->getPhoto(), PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents('photos/' . $claim->getPhoto())) ?>" alt="Reclamation Photo">
+        <img src="<?= 'data:image/' . pathinfo($reclamation->getPhoto(), PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents('photos/' . $reclamation->getPhoto())) ?>" alt="Reclamation Photo">
     </div>
 
     <footer>
-        <p>Date: <?= date('Y-m-d H:i:s') ?></p>
+        <p>Date: <?= $reclamation->getdate() ?></p>
     </footer>
 </body>
 

@@ -29,7 +29,7 @@
                     <td class="text-center"><?= $claim->getStatus() ?></td>
                     <td class="text-center">
                         <a href="/admin/view/<?= $claim->id ?>" class="btn btn-info btn-sm">
-                            View
+                            VOIR
                         </a>
                     </td>
                 </tr>

@@ -203,7 +203,7 @@ class ReclamationController extends BaseController
 
         // Générer le contenu du PDF pour suivre la réclamation
         $dompdf = new Dompdf();
-        $html = view('reclamations/pdf', ['reclamation' => $reclamation]);
+        $html = view('loadPdf', ['reclamation' => $reclamation]);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
