@@ -27,7 +27,7 @@ class ReclamationController extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            return redirect()->back()->with('inValid', 'invalid data');
+            return redirect()->back()->with('error', 'il y a un error dans les champs');
         }
 
         if ($file->isValid() && !$file->hasMoved()) {
@@ -56,7 +56,7 @@ class ReclamationController extends BaseController
             $session = session();
             $session->setFlashdata('failed', 'The image is not valid');
 
-            return redirect()->to('/');
+            return redirect()->to('/Soumettre_Reclamation')->with("error","il y a un error dans les champs");
         }
     }
 

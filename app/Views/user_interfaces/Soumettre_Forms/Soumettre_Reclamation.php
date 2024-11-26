@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
         body {
             background-color: #dfe9f6;
         }
+
         .form-container {
             width: 400px;
             margin: 42px auto;
@@ -19,54 +21,75 @@
             border-radius: 8px;
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
         }
+
         .form-title {
             text-align: center;
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 40px;
         }
+
         .btn-primary {
             background-color: #007bff;
             margin-left: 40px;
             width: 120px;
         }
+
         .btn-secondary {
             background-color: #6c757d;
             margin-right: 40px;
             width: 120px;
         }
+
+        .alert {
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+            width: 30%;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #842029;
+            border: 1px solid #f5c2c7;
+        }
     </style>
 </head>
-<body>
 
-<div class="form-container">
+<body>
+    <?php if (session()->has("error")): ?>
+        <div class="alert alert-error"><?= session()->get("error") ?></div>
+    <?php endif ?>
+    <div class="form-container">
         <div class="form-title">Soumettre une Réclamation</div>
-        <form id="reclamationForm"  action="/ajouteReclamation" method="post" enctype="multipart/form-data">
+        <form id="reclamationForm" action="/ajouteReclamation" method="post" enctype="multipart/form-data">
             <!-- Nom d'utilisateur -->
             <div class="mb-3">
                 <input type="text" class="form-control" id="nom_utilisateur" name="nom_utilisateur" placeholder="Nom d'utilisateur" required>
             </div>
-            
+
             <!-- E-mail -->
             <div class="mb-3">
                 <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
             </div>
-            
+
             <!-- Sujet de réclamation -->
             <div class="mb-3">
                 <input type="text" class="form-control" id="sujet" name="sujet" placeholder="Sujet de réclamation" required>
             </div>
-            
+
             <!-- Description -->
             <div class="mb-3">
                 <textarea class="form-control" id="description" name="description" rows="2" placeholder="Description" required></textarea>
             </div>
-            
+
             <!-- Sélection d'une photo -->
             <div class="mb-3">
-                <input type="file" class="form-control" id="photo" name="photo"  placeholder="Sélectionnez une photo (facultatif)">
+                <input type="file" class="form-control" id="photo" name="photo" placeholder="Sélectionnez une photo (facultatif)">
             </div>
-            
+
             <!-- Boutons d'action -->
             <div class="d-flex justify-content-between">
                 <button type="submit" class="btn btn-primary">Envoyer</button>
@@ -75,4 +98,5 @@
         </form>
     </div>
 </body>
+
 </html>
