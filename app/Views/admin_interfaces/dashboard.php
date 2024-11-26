@@ -118,7 +118,7 @@
                         <?php if (session()->get('super_admin')): ?>
                             <li class="nav-item text-center">
                                 <a class="nav-link text-center ml-2" href="<?= base_url('Liste_Admins') ?>">
-                                    <i class="fas fa-users fa-fw"></i> Utilisateurs
+                                    <i class="fas fa-users fa-fw"></i> admin
                                 </a>
                             </li>
                         <?php endif ?>
