@@ -18,6 +18,10 @@ class Gestion_adminsController extends BaseController
     }
     public function ajouterAdmin()
     {
+        $session=session();
+        if(!$session->get("logged")&&!$session->get("super_admin")){
+            return redirect()->to("/Connexion-Connexion-admin");
+        }
 
         $adminModel = new AdminModel();
         $admin = new Admin();
@@ -30,7 +34,7 @@ class Gestion_adminsController extends BaseController
         $validation = \Config\Services::Validation();
         $validation->setRules([
             'email' => 'required|valid_email',
-            'nom_utilisateur' =>'required',
+            'nom_utilisateur' =>'required|min_length[4]',
             'mot_de_passe' => 'required|min_length[8]',
         ]);
 
@@ -62,7 +66,8 @@ class Gestion_adminsController extends BaseController
             return redirect()->to("/Connexion-Connexion-admin");
         }
         $adminModel = new AdminModel();
-        $data['admins'] = $adminModel->where("role","admin")->findAll();
+        $data["admins"]=$adminModel->paginate(4,"default");
+        $data['pages'] = $adminModel->pager;
         return view('admin_interfaces/Gestion_admins', $data);
     }
 
