@@ -55,11 +55,13 @@
         </tbody>
     </table>
 </div>
-<div>
-    <p class="text-dark fw-bold text-start mt-3" style="font-size: 20px;">
-        <a href="/Ajouter_admins">Ajouter un admin.</a>
-    </p>
+<div class="d-flex justify-content-center mt-3">
+    <a href="/Ajouter_admins" class="btn btn-primary fw-bold" style="font-size: 20px; margin-right: 2cm;">
+        Ajouter
+    </a>
 </div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
