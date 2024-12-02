@@ -66,8 +66,7 @@ class Gestion_adminsController extends BaseController
             return redirect()->to("/Connexion-Connexion-admin");
         }
         $adminModel = new AdminModel();
-        $data["admins"]=$adminModel->paginate(4,"default");
-        $data['pages'] = $adminModel->pager;
+        $data['admins'] = $adminModel->where("role","admin")->findAll();
         return view('admin_interfaces/Gestion_admins', $data);
     }
 

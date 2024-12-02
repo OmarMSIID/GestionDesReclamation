@@ -54,9 +54,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="d-flex justify-content-center mt-4">
-        <?= $pages->links('default', 'bootstrap_pagination') ?>
-    </div>
 </div>
 <div>
     <p class="text-dark fw-bold text-start mt-3" style="font-size: 20px;">
