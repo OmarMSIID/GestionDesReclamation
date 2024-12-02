@@ -165,24 +165,6 @@ class ReclamationController extends BaseController
         }
     }
 
-    //------------generate pdf ----------------//
-
-    public function generatePdf($data, $fileName)
-    {
-        $dompdf = new Dompdf();
-        $resp = [
-            "claim" => $data,
-        ];
-        $html = view('loadPdf', $resp);
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-        $output = $dompdf->output();
-        file_put_contents(WRITEPATH . 'uploads/' . $fileName, $output);
-        return WRITEPATH . 'uploads/' . $fileName;
-    }
-
-    // Générer un ID unique
     private function genererIdUnique($model)
     {
         do {
@@ -191,7 +173,6 @@ class ReclamationController extends BaseController
         return $generated_id;
     }
 
-    // Télécharger le PDF pour suivre une réclamation
     public function telechargerPdf($generated_id)
     {
         $model = new ReclamationModel();
@@ -200,10 +181,8 @@ class ReclamationController extends BaseController
         if (!$reclamation) {
             return redirect()->to('/')->with('error', 'Réclamation introuvable.');
         }
-
-        // Générer le contenu du PDF pour suivre la réclamation
         $dompdf = new Dompdf();
-        $html = view('loadPdf', ['reclamation' => $reclamation]);
+        $html = view('reclamations/pdf', ['reclamation' => $reclamation]);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
