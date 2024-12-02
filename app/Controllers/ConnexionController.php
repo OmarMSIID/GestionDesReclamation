@@ -84,7 +84,7 @@ class ConnexionController extends BaseController
             
             // creation du lien pour la reinitialisation
             $resetLink = base_url("admin/reinitialiser-mot-de-passe/$identifiantUnique");
-            $email_Env->setMessage("Bonjour, <br><br>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant : <a href=\"$resetLink\">rest link </a>");
+            $email_Env->setMessage("Bonjour, \n\nPour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant : \n$resetLink");
 
             // envoyer email
             if ($email_Env->send()) {
