@@ -40,28 +40,15 @@
             margin-right: 40px;
             width: 120px;
         }
-
-        .alert {
-            margin: 20px auto;
-            padding: 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            text-align: center;
-            width: 30%;
-        }
-
-        .alert-error {
-            background-color: #f8d7da;
-            color: #842029;
-            border: 1px solid #f5c2c7;
-        }
     </style>
 </head>
 
 <body>
-    <?php if (session()->has("error")): ?>
-        <div class="alert alert-error"><?= session()->get("error") ?></div>
-    <?php endif ?>
+    <?php if (session()->getFlashdata('error')) : ?>
+        <div class="alert alert-danger position-absolute" style="top: 4%;left: 50%;transform: translate(-50%, -50%);">
+            <?= session()->getFlashdata('error') ?>
+        </div>
+    <?php endif; ?>
     <div class="form-container">
         <div class="form-title">Soumettre une Réclamation</div>
         <form id="reclamationForm" action="/ajouteReclamation" method="post" enctype="multipart/form-data">
