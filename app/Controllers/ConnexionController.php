@@ -79,12 +79,12 @@ class ConnexionController extends BaseController
             $email_Env = \Config\Services::email();
 
             $email_Env->setTo($email);
-            $email_Env->setFrom('ayoub.chammakh.23@edu.uiz.ac.ma', 'Gestion-des-reclamations');
+            $email_Env->setFrom('Gestion-des-reclamations');
             $email_Env->setSubject('Réinitialisation de votre mot de passe');
             
             // creation du lien pour la reinitialisation
             $resetLink = base_url("admin/reinitialiser-mot-de-passe/$identifiantUnique");
-            $email_Env->setMessage("Bonjour, \n\nPour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant : \n$resetLink");
+            $email_Env->setMessage("Bonjour, <br><br>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant : <a href=\"$resetLink\">rest link </a>");
 
             // envoyer email
             if ($email_Env->send()) {
