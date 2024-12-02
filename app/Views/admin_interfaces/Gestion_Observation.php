@@ -2,12 +2,6 @@
 
 <?= $this->section('content') ?>
     <h3 class="text-center mt-5">Gestion des Observations</h3>
-    <div>
-        <p class="text-dark fw-bold text-start mt-3" style="font-size: 20px;">
-            Bonjour <?= session()->get("nom_utilisateur") ?>
-        </p>
-    </div>    
-
     <div class="container mt-5">
         <table class="table table-hover table-dark">
             <thead>
