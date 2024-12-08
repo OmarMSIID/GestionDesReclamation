@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class RefusedClaimModel extends Model{
     protected $table="refused_claims";
     protected $primaryKey='id';
-    protected $allowedFields =['reason'];
+    protected $allowedFields =['generated_id'];
 
     public function countRefuseClaim(){
         $num=$this->countAllResults();

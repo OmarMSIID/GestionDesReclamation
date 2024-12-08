@@ -11,7 +11,7 @@
         }
 
         .center-message {
-            margin-top: 20%;
+            margin-top: 10%;
         }
 
         .reason {

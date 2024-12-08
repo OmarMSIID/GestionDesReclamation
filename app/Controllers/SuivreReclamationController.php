@@ -39,9 +39,11 @@ class SuivreReclamationController extends BaseController
     $email = $this->request->getPost('email');
     $generated_id = $this->request->getPost('generated_id');
     $model = new \App\Models\ReclamationModel();
+    $model_refusee = new \App\Models\RefusedClaimModel();
 
     // Rechercher la reclamation 
     $reclamation = $model->where('email', $email)->where('generated_id', $generated_id)->first();
+    $reclamation_refusee = $model_refusee->where('generated_id', $generated_id)->first();
 
     if ($reclamation) {
         // Rediriger vers la vue appropriee en fonction du statut
@@ -50,12 +52,13 @@ class SuivreReclamationController extends BaseController
                 return view('user_interfaces/StatusReclamation/accepte', ['reclamation' => $reclamation]);
             case 'EN_COUR_DE_TRAITEMENT':
                 return view('user_interfaces/StatusReclamation/en_cour_de_traitement', ['reclamation' => $reclamation]);
-            case 'REFUSE':
-                return view('user_interfaces/StatusReclamation/refuse', ['reclamation' => $reclamation]);
             default:
                 return redirect()->back()->with('error', 'Statut inconnu.');
         }
-    } else {
+    }else if($reclamation_refusee){
+        return view('user_interfaces/StatusReclamation/refuse', ['reclamation' => $reclamation]);
+    }
+    else {
         return redirect()->back()->with('error', 'Réclamation introuvable.');
     }
 }

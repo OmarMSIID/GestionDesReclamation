@@ -95,7 +95,7 @@ class ReclamationController extends BaseController
         $reclamation->setStatus("REFUSE");
         $model->save($reclamation);
 
-        $refuseModel->save(['reason' => $reclamation->getSujet()]);
+        $refuseModel->save(['generated_id' => $reclamation->getGeneratedId()]);
 
         $email = \Config\Services::email();
         $email->setTo($reclamation->getEmail());

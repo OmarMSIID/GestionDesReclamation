@@ -92,6 +92,10 @@ class Reclamation extends Entity{
         return $this;
     }
 
+    public function getGeneratedId(){
+        return $this->attributes['generated_id'];
+    }
+
     public function getDate(){
         return $this->attributes['date'];
     }
