@@ -13,7 +13,7 @@ class StatistiquesController extends BaseController{
         $accepte=$model->counteAcceptedState();
         $refuse=$refuseModel->countRefuseClaim();
         $enCourDeTraitement=$model->counteEnCourDeTraitemetState();
-        $total=$model->countAllResults();
+        $total=$model->countAllResults() + $refuse;
         $data=[
             'enCourDeTraitement'=>$enCourDeTraitement,
             'accepte'=>$accepte,
